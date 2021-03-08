@@ -1,23 +1,30 @@
-import { useEffect } from 'react'
-import { useDispatch } from 'react-redux'
+import React from 'react';
 import Link from 'next/link'
-import { startClock } from '../actions'
-import Examples from '../components/examples'
+import Accounts from '../components/component/accounts';
+import styled from 'styled-components';
+import GlobalFonts from './globals';
+
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'font-awesome/css/font-awesome.min.css';
+
+const Styles = styled.body`
+  font-family: 'lato-regular';
+`;
 
 const Index = () => {
-  const dispatch = useDispatch()
-  useEffect(() => {
-    dispatch(startClock())
-  }, [dispatch])
 
   return (
-    <>
-      <Examples />
-      <Link href="/show-redux-state">
-        <a>Click to see current Redux State</a>
-      </Link>
-    </>
-  )
-}
+    <Styles>
+      <main className='root-main-content'>
+        <GlobalFonts />
+        <Link href="/">
+          <Accounts />
+        </Link>
+      </main>
+    </Styles>
+  );
+};
 
-export default Index
+export default Index;
