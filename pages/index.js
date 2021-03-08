@@ -1,6 +1,7 @@
 import React from 'react';
 import Link from 'next/link'
 import Accounts from '../components/component/accounts';
+import Header from '../components/common/header';
 import styled from 'styled-components';
 import GlobalFonts from './globals';
 
@@ -13,6 +14,11 @@ const Styles = styled.body`
   font-family: 'lato-regular';
 `;
 
+
+const PlaceHolderComponent = () => {
+  
+}
+
 const Index = () => {
 
   return (
@@ -20,7 +26,10 @@ const Index = () => {
       <GlobalFonts />
       <main className='root-main-content'>
         <Link href="/">
+          <>
+          <Header/>
           <Accounts />
+          </>
         </Link>
       </main>
     </Styles>

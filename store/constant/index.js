@@ -1,4 +1,4 @@
-const API_BASE = 'http://localhost:9090/';
+const API_BASE = 'http://conzalt-dev.us-east-1.elasticbeanstalk.com:9191/';
 const PAGE_LOADER = 'global/PAGE_LOADER';
 const GET_SUGGESTIONS = 'global/GET_SUGGESTIONS';
 const GET_SEARCH_RESULTS = 'global/GET_SEARCH_RESULTS';

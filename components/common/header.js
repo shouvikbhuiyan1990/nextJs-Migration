@@ -1,28 +1,286 @@
 import React, { useEffect, useState, useCallback, useRef } from 'react';
 import debounce from 'lodash/debounce';
+import styled from 'styled-components';
 import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
 import isEmpty from 'lodash/isEmpty';
 import Badge from 'react-bootstrap/Badge'
-import { Link, NavLink } from 'react-router-dom';
-import Modal from '../component/joiningModal';
-import RegistrationModal from '../component/registrationModal';
+import Link from 'next/link';
+// import Modal from '../component/joiningModal';
+// import RegistrationModal from '../component/registrationModal';
 import { toggleModal } from "../../store/actions/joiningModal";
 import { userlogin } from "../../store/actions/registration";
 import cookie from '../../utils/cookie';
 import LeftMenu from '../component/leftMenu';
-import { useLocation } from "react-router-dom";
 import PageLoader from './pageLoader';
 
-import logo from '../../images/logo.png';
-import search from '../../images/search.svg';
-import mobileMenu from '../../images/mobile-menu.svg';
-import mobileMenuWhite from '../../images/mobile-menu-white.svg';
+// import logo from '../../images/logo.png';
+// import search from '../../images/search.svg';
+// import mobileMenu from '../../images/mobile-menu.svg';
+// import mobileMenuWhite from '../../images/mobile-menu-white.svg';
 
 import { logout } from '../../utils/helpers';
 import { checkNotifications, getSuggestions } from '../../store/actions/global';
 
-import './header.css';
+
+const Styles = styled.div`
+header {
+    position: absolute;
+    background: transparent;
+    z-index: 9;
+    width: 100%;
+}
+
+header .profile-img {
+    width: 50px;
+    height: 50px;
+    background-size: cover;
+    border-radius: 50%;
+    cursor: pointer;
+    background-color: #ccc;
+    background-image: url('https://via.placeholder.com/450');
+    position: relative;
+}
+
+header .active-notification {
+    position: absolute;
+    bottom: 8px;
+    right: -5px;
+}
+
+header .profile-links {
+    position: absolute;
+    right: 20px;
+    width: 100%;
+    max-width: 200px;
+    top: 80px;
+    user-select: none;
+}
+
+header .profile-links::before {
+    display: inline-block;
+    position: absolute;
+    content: "";
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-bottom: 10px solid #fff;
+    top: -7px;
+    right: 10px;
+    z-index: 2;
+}
+
+header .profile-links::after {
+    display: inline-block;
+    position: absolute;
+    content: "";
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-bottom: 10px solid #ddd;
+    top: -8px;
+    right: 10px;
+}
+
+header .profile-links .profile-info {
+    width: 100%;
+    padding: 15px 10px;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    -webkit-box-shadow: 0 0 5px 1px rgba(0, 0, 0, .05);
+    box-shadow: 0 0 5px 1px rgba(0, 0, 0, .05);
+    background-color: #fff;
+}
+
+header .header-row  > .links {
+    display: flex;
+}
+
+header .header-row > .links > a {
+    align-self: center;
+}
+
+header .profile-links .profile-info .links a, header.header-fixed .profile-links .profile-info .links a {
+    display: block;
+    margin: 4px 0;
+    cursor: pointer;
+    text-decoration: none;
+    border-bottom: 1px solid #eee;
+}
+
+header .profile-links .profile-info a:hover {
+    text-decoration: underline;
+}
+
+header .profile-links .profile-info a:last-child {
+    margin-bottom: 0;
+}
+
+header .profile-links .profile-info a:first-child {
+    margin-top: 0;
+}
+
+header .profile-links .profile-info a, header.header-fixed .profile-links .profile-info a {
+    color: #7a7d85;
+}
+
+header .profile-links .profile-info a:hover, header.header-fixed .profile-links .profile-info a:hover {
+    color: #1dbf73;
+}
+
+header .profile-links .profile-info .links {
+    display: flex;
+    flex-direction: column;
+}
+
+header a.become-a-teacher {
+    display: inline-block;
+    cursor: pointer;
+    color: #fff;
+}
+
+header a.become-a-teacher:hover {
+    color: #fff;
+}
+
+.header-row {
+    margin: 0 auto;
+    min-width: 300px;
+    padding: 20px 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+}
+
+.header-row a {
+    color: #fff;
+    margin: 0 10px;
+}
+
+.header-row .links a {
+    display: none;
+}
+
+.header-row .links .become-a-teacher {
+    display: block;
+}
+
+.btn-custom, .btn-custom:hover {
+    background: transparent;
+    border-color: #fff;
+    color: #fff;
+}
+
+a img {
+    width: 80px;
+}
+
+header form {
+    display: none;
+}
+
+header.header-fixed {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 999;
+    background-color: #fff;
+    color: #404145;
+    border-bottom: 1px solid #e4e5e7;
+}
+
+.logo-search {
+    display: flex;
+    align-items: center;
+}
+
+.logo-search input[type=search] {
+    outline-offset: -2px;
+    flex: 1;
+    font-size: 16px;
+    padding: 7px 7px 9px 44px;
+    border: 1px solid #ddd;
+    border-radius: 4px 0 0 4px;
+}
+
+header.header-fixed .logo-search button.btn-custom, header.header-fixed .logo-search button.btn-custom:hover {
+    background-color: #1dbf73;
+    border-radius: 0 4px 4px 0;
+    color: #fff;
+    border: 1px solid #1dbf73;
+    padding-top: 8px;
+    padding-bottom: 8px;
+}
+
+header.header-fixed form img {
+    width: 16px;
+    height: 16px;
+    position: absolute;
+    top: 11px;
+    left: 14px;
+}
+
+.mobile-menu {
+    width: 24px;
+    height: 24px;
+}
+
+header.header-fixed .header-row a {
+    color: #404145;
+    text-decoration: none;
+}
+
+header.header-fixed .header-row .links a, header .header-row .links a {
+    border-bottom: 1px solid;
+    padding-bottom: 2px;
+    text-decoration: none;
+}
+
+header.header-fixed .header-row .links a.active {
+    border-bottom: 2px solid #1dbf73;
+    font-family: 'lato-bold';
+}
+
+header.header-fixed .btn-custom, header.header-fixed .btn-custom:hover {
+    background: transparent;
+    border-color: #1dbf73;
+    color: #1dbf73;
+}
+
+@media screen and (min-width: 968px) {
+    .header-row {
+        max-width: 968px;
+        height: 80px;
+    }
+}
+
+@media screen and (min-width: 1025px) {
+    header .profile-links {
+        right: 30px;
+        top: 75px;
+    }
+    .mobile-menu {
+        display: none;
+    }
+    header.header-fixed form {
+        display: block;
+        position: relative;
+    }
+    .header-row .links a {
+        display: inline-block;
+    }
+    a img {
+        width: 200px;
+    }
+    .header-row {
+        max-width: 1400px;
+        padding: 0 32px;
+    }
+}
+`;
 
 const Header = () => {
     const cache = new Map();
@@ -35,7 +293,6 @@ const Header = () => {
     const searchSuggestions = useSelector(state => state.global.searchSuggestions);
     const showRegistrationModal = useSelector(state => state.joinModal.showRegistrationModal);
     const notifications = useSelector(state => state.global.notifications) || [];
-    const { pathname } = useLocation();
     const [showMobileMenu, setShowMobileMenu] = useState(false);
     const [scrollPosition, setScrollPosition] = useState(false);
     const [currentPage, setCurrentPage] = useState('');
@@ -159,89 +416,84 @@ const Header = () => {
     });
 
     useEffect(() => {
-        setCurrentPage(pathname === '/' ? 'home' : '');
-        if (pathname !== '/') {
-            sessionStorage.setItem('lastVisited', window.location.href);
-        }
-    }, [pathname]);
-
-    useEffect(() => {
         if (isEmpty(searchSuggestions)) {
             dispatch(getSuggestions());
         }
     }, [searchSuggestions, dispatch])
 
     return (
-        <header className={scrollPosition ? 'header-fixed' : (currentPage !== 'home' ? 'header-fixed' : '')}>
-            <LeftMenu isOpen={showMobileMenu} />
-            <PageLoader show={showPageLoader} />
-            <div className='header-row'>
-                <img
-                    onClick={(e) => { e.stopPropagation(); setShowMobileMenu(true) }}
-                    role='button'
-                    aria-roledescription='menu'
-                    src={(scrollPosition || currentPage !== 'home') ? mobileMenu : mobileMenuWhite} alt='menu icon'
-                    className='mobile-menu'
-                />
-                <div className='logo-search'>
-                    <Link to='/'><img src={logo} alt='logo'></img></Link>
-                    <form ref={inputref}>
-                        <img src={search} alt='search' />
-                        <input onChange={searchFunction} type='search' autoComplete='off' placeholder='Search course' />
-                        <button onClick={(e) => { e.preventDefault(); gotoSearchPage() }} className='btn btn-custom'>Search</button>
-                        {filteredList.length > 0 &&
-                            <div className='typeahead' style={{ top: `${getTopPosition()}px` }}>
-                                {
-                                    filteredList.map((item) => {
-                                        return (
-                                            <p onClick={() => gotoSearchPage(item)}>
-                                                <div className='holder'>
-                                                    <span>{item.displayText}</span>
-                                                    <i className="fa fa-long-arrow-left" aria-hidden="true"></i>
-                                                </div>
-                                            </p>
-                                        )
-                                    })
-                                }
-                            </div>
+        <Styles>
+            <header className={scrollPosition ? 'header-fixed' : (currentPage !== 'home' ? 'header-fixed' : '')}>
+                <LeftMenu isOpen={showMobileMenu} />
+                <PageLoader show={showPageLoader} />
+                <div className='header-row'>
+                    {/* <img
+                        onClick={(e) => { e.stopPropagation(); setShowMobileMenu(true) }}
+                        role='button'
+                        aria-roledescription='menu'
+                        src={(scrollPosition || currentPage !== 'home') ? mobileMenu : mobileMenuWhite} alt='menu icon'
+                        className='mobile-menu'
+                    /> */}
+                    <div className='logo-search'>
+                        {/* <Link to='/'><img src={logo} alt='logo'></img></Link> */}
+                        <form ref={inputref}>
+                            {/* <img src={search} alt='search' /> */}
+                            <input onChange={searchFunction} type='search' autoComplete='off' placeholder='Search course' />
+                            <button onClick={(e) => { e.preventDefault(); gotoSearchPage() }} className='btn btn-custom'>Search</button>
+                            {filteredList.length > 0 &&
+                                <div className='typeahead' style={{ top: `${getTopPosition()}px` }}>
+                                    {
+                                        filteredList.map((item) => {
+                                            return (
+                                                <p onClick={() => gotoSearchPage(item)}>
+                                                    <div className='holder'>
+                                                        <span>{item.displayText}</span>
+                                                        <i className="fa fa-long-arrow-left" aria-hidden="true"></i>
+                                                    </div>
+                                                </p>
+                                            )
+                                        })
+                                    }
+                                </div>
+                            }
+                        </form>
+                    </div>
+                    <div className='links'>
+                        <Link href='/our-experts' activeclassName='active'>Our Experts</Link>
+                        {isLoggedIn &&
+                            <React.Fragment>
+                                <div onClick={(e) => { e.stopPropagation(); setDisplayProfileLinks(!displayProfileLinks) }} className='profile-img' style={{ backgroundImage: `url(${profileImageUrl || imageUrl || cookie.get('profileImageUrl')[0]})` }}>
+                                    {notifications.length > 0 &&
+                                        <div className='active-notification'></div>
+                                    }
+                                </div>
+                            </React.Fragment>
                         }
-                    </form>
-                </div>
-                <div className='links'>
-                    <NavLink to='/our-experts' activeclassName='active'>Our Experts</NavLink>
-                    {isLoggedIn &&
-                        <React.Fragment>
-                            <div onClick={(e) => { e.stopPropagation(); setDisplayProfileLinks(!displayProfileLinks) }} className='profile-img' style={{ backgroundImage: `url(${profileImageUrl || imageUrl || cookie.get('profileImageUrl')[0]})` }}>
-                                {notifications.length > 0 &&
-                                    <div className='active-notification'></div>
-                                }
-                            </div>
-                        </React.Fragment>
-                    }
-                    {!isLoggedIn &&
-                        <React.Fragment>
-                            <a className='become-a-teacher' href onClick={() => dispatch(toggleModal(!showModal, 'signin'))}>Sign In</a>
-                            <button className='btn btn-custom' type='button' onClick={() => dispatch(toggleModal(!showModal, 'generic'))}>Sign Up</button>
-                        </React.Fragment>
-                    }
-                    {displayProfileLinks &&
-                        <div className='profile-links'>
-                            <div className='profile-info'>
-                                <div className='links' onClick={(e) => e.stopPropagation()}>
-                                    <Link to='/notifications'>
-                                        Notifications {notifications.length > 0 && <Badge pill variant="danger">{notifications.length}</Badge>}
-                                    </Link>
-                                    <Link to='/dashboard'>Dashboard</Link>
-                                    <a href onClick={logOut}>Logout</a>
+                        {!isLoggedIn &&
+                            <React.Fragment>
+                                <a className='become-a-teacher' href onClick={() => dispatch(toggleModal(!showModal, 'signin'))}>Sign In</a>
+                                <button className='btn btn-custom' type='button' onClick={() => dispatch(toggleModal(!showModal, 'generic'))}>Sign Up</button>
+                            </React.Fragment>
+                        }
+                        {displayProfileLinks &&
+                            <div className='profile-links'>
+                                <div className='profile-info'>
+                                    <div className='links' onClick={(e) => e.stopPropagation()}>
+                                        <Link to='/notifications'>
+                                            Notifications {notifications.length > 0 && <Badge pill variant="danger">{notifications.length}</Badge>}
+                                        </Link>
+                                        <Link to='/dashboard'>Dashboard</Link>
+                                        <a href onClick={logOut}>Logout</a>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    }
+                        }
+                    </div>
+                    {/* <Modal show={showModal} /> */}
+                    {/* <RegistrationModal show={showRegistrationModal} /> */}
                 </div>
-                <Modal show={showModal} />
-                <RegistrationModal show={showRegistrationModal} />
-            </div>
-        </header>
+            </header>
+        </Styles>
     );
 };
 
