@@ -7,17 +7,17 @@ import { createGlobalStyle } from 'styled-components';
 export default createGlobalStyle`
 @font-face {
 	font-family: 'lato-regular';
-	src: url('../fonts/Lato-Regular.ttf');
+	src: url('/fonts/Lato-Regular.ttf');
 }
 
 @font-face {
 	font-family: 'lato-bold';
-	src: url('../fonts/Lato-Bold.ttf');
+	src: url('/fonts/Lato-Bold.ttf');
 }
 
 @font-face {
 	font-family: 'lato-semibold';
-	src: url('../fonts/Lato-Black.ttf');
+	src: url('/fonts/Lato-Black.ttf');
 }
 
 html {

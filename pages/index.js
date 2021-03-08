@@ -17,8 +17,8 @@ const Index = () => {
 
   return (
     <Styles>
+      <GlobalFonts />
       <main className='root-main-content'>
-        <GlobalFonts />
         <Link href="/">
           <Accounts />
         </Link>
