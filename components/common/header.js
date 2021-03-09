@@ -14,11 +14,6 @@ import cookie from '../../utils/cookie';
 import LeftMenu from '../component/leftMenu';
 import PageLoader from './pageLoader';
 
-// import logo from '../../images/logo.png';
-// import search from '../../images/search.svg';
-// import mobileMenu from '../../images/mobile-menu.svg';
-// import mobileMenuWhite from '../../images/mobile-menu-white.svg';
-
 import { logout } from '../../utils/helpers';
 import { checkNotifications, getSuggestions } from '../../store/actions/global';
 
@@ -29,6 +24,11 @@ header {
     background: transparent;
     z-index: 9;
     width: 100%;
+}
+
+.logo-search img {
+    max-width: 200px;
+    padding-right: 10px;
 }
 
 header .profile-img {
@@ -227,6 +227,15 @@ header.header-fixed form i {
     width: 24px;
     height: 24px;
 }
+
+.mobile-menu i {
+    font-size: 1.8rem;
+}
+
+.mobile-menu i.white {
+    color: #fff;
+}
+
 
 header.header-fixed .header-row a {
     color: #404145;
@@ -427,15 +436,18 @@ const Header = () => {
                 <LeftMenu isOpen={showMobileMenu} />
                 <PageLoader show={showPageLoader} />
                 <div className='header-row'>
-                    {/* <img
-                        onClick={(e) => { e.stopPropagation(); setShowMobileMenu(true) }}
+                    <span
+                        className='mobile-menu'
                         role='button'
                         aria-roledescription='menu'
-                        src={(scrollPosition || currentPage !== 'home') ? mobileMenu : mobileMenuWhite} alt='menu icon'
-                        className='mobile-menu'
-                    /> */}
+                        onClick={(e) => { e.stopPropagation(); setShowMobileMenu(true) }}
+                    >
+                        <i className={`fa fa-bars ${(scrollPosition || currentPage !== 'home') ? '' : 'white'}`} aria-hidden="true"></i>
+                    </span>
                     <div className='logo-search'>
-                        {/* <Link to='/'><img src={logo} alt='logo'></img></Link> */}
+                        <Link href='/'>
+                            <img src='/images/logo.png' alt='logo'></img>
+                        </Link>
                         <form ref={inputref}>
                             <i className="fa fa-search" aria-hidden="true"></i>
                             <input onChange={searchFunction} type='search' autoComplete='off' placeholder='Search course' />
