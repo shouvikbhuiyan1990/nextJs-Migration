@@ -1,9 +1,5 @@
 import { createGlobalStyle } from 'styled-components';
 
-// import LatoBlack from './fonts/Lato-Black.ttf';
-// import LatoBold from './fonts/Lato-Bold.ttf';
-// import LatoRegular from './fonts/Lato-Regular.ttf';
-
 export default createGlobalStyle`
 @font-face {
 	font-family: 'lato-regular';
@@ -107,6 +103,11 @@ button.share-btn i {
 	width: 100%;
 	z-index: 11;
 	background-color: rgba(255, 255, 255, 0.3);
+}
+
+.avatar {
+	background-size: cover;
+	border-radius: 50%;
 }
 
 .active-notification {

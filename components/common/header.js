@@ -497,7 +497,9 @@ const Header = () => {
                     </span>
                     <div className='logo-search'>
                         <Link href='/'>
-                            <img src='/images/logo.png' alt='logo'></img>
+                            <a href="/">
+                                <img src='/images/logo.png' alt='logo'></img>
+                            </a>
                         </Link>
                         <form ref={inputref}>
                             <i className="fa fa-search" aria-hidden="true"></i>

@@ -5,8 +5,7 @@ import { getOurExperts } from '../../store/actions/global';
 import ScrollToTopOnMount from '../common/scrollToTopOnMount';
 import Spinner from 'react-bootstrap/Spinner';
 import ExpertCard from '../component/experts/card';
-
-import './container.css';
+import Styles from './container';
 
 const ExpertsLandingPage = () => {
 
@@ -20,7 +19,7 @@ const ExpertsLandingPage = () => {
     }, [dispatch]);
 
     return (
-        <main>
+        <Styles>
             <ScrollToTopOnMount />
             <div className='search-landing-user'>
                 <h2 style={{ marginBottom: '40px' }}>Our Team of Experts</h2>
@@ -41,7 +40,7 @@ const ExpertsLandingPage = () => {
                     }
                 </div>
             </div>
-        </main>
+        </Styles>
     );
 };
 

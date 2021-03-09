@@ -1,6 +1,6 @@
 import React from 'react';
 import Layout from './_Layout';
-import Home from '../components/containers/home';
+import ExpertsLandingPage from '../components/containers/expertsLanding';
 import styled from 'styled-components';
 import GlobalFonts from './_globals';
 
@@ -16,16 +16,16 @@ const Styles = styled.body`
 
 const Index = () => {
 
-  return (
-    <Styles>
-      <GlobalFonts />
-      <main className='root-main-content'>
-        <Layout>
-          <Home />
-        </Layout>
-      </main>
-    </Styles>
-  );
+    return (
+        <Styles>
+            <GlobalFonts />
+            <main className='root-main-content'>
+                <Layout>
+                    <ExpertsLandingPage />
+                </Layout>
+            </main>
+        </Styles>
+    );
 };
 
 export default Index;

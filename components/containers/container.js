@@ -1,3 +1,6 @@
+import styled from 'styled-components';
+
+const ContainerStyles = styled.div`
 .course-landing-user, .search-landing-user, .notifications-landing, .teacher-listing, .course-listing, .loggedin-dashboard, .loggedin-teacher-calendar, .confirmation-tile {
     max-width: 1440px;
     margin: 100px auto 50px;
@@ -140,3 +143,6 @@
         max-width: 980px;
     }
 }
+`;
+
+export default ContainerStyles;
