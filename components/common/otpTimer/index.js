@@ -1,6 +1,13 @@
 import React, { useState, useEffect } from 'react';
+import styled from 'styled-components';
 
 import './index.css';
+
+const Styles = styled.div`
+.otpTime .text {
+    margin-left: 6px;
+}
+`;
 
 const OtpTimer = ({
     defaultTimeInMinutes = 2,
@@ -35,18 +42,20 @@ const OtpTimer = ({
     }
 
     return (
-        <button disabled={time > 0} className={`otpTime ${className}`} onClick={resendOtp}>
-            {icon && icon}
-            {time > 0 &&
-                <React.Fragment>
-                    <span>{time > 60 ? parseInt(time / 60) : 0}</span>:
+        <Styles>
+            <button disabled={time > 0} className={`otpTime ${className}`} onClick={resendOtp}>
+                {icon && icon}
+                {time > 0 &&
+                    <React.Fragment>
+                        <span>{time > 60 ? parseInt(time / 60) : 0}</span>:
                     <span>{time > 60 ? makeDoubleDigit(time % 60) : makeDoubleDigit(time)}</span>
-                </React.Fragment>
-            }
-            <span className='text'>
-                Resend
+                    </React.Fragment>
+                }
+                <span className='text'>
+                    Resend
             </span>
-        </button>
+            </button>
+        </Styles>
     )
 }
 

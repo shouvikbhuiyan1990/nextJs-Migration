@@ -215,7 +215,7 @@ header.header-fixed .logo-search button.btn-custom, header.header-fixed .logo-se
     padding-bottom: 8px;
 }
 
-header.header-fixed form img {
+header.header-fixed form i {
     width: 16px;
     height: 16px;
     position: absolute;
@@ -437,7 +437,7 @@ const Header = () => {
                     <div className='logo-search'>
                         {/* <Link to='/'><img src={logo} alt='logo'></img></Link> */}
                         <form ref={inputref}>
-                            {/* <img src={search} alt='search' /> */}
+                            <i className="fa fa-search" aria-hidden="true"></i>
                             <input onChange={searchFunction} type='search' autoComplete='off' placeholder='Search course' />
                             <button onClick={(e) => { e.preventDefault(); gotoSearchPage() }} className='btn btn-custom'>Search</button>
                             {filteredList.length > 0 &&

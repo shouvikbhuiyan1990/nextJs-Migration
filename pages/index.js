@@ -2,6 +2,7 @@ import React from 'react';
 import Link from 'next/link'
 import Accounts from '../components/component/accounts';
 import Header from '../components/common/header';
+import Footer from '../components/common/footer';
 import styled from 'styled-components';
 import GlobalFonts from './globals';
 
@@ -15,9 +16,13 @@ const Styles = styled.body`
 `;
 
 
-const PlaceHolderComponent = () => {
-  
-}
+const PlaceHolderComponent = (props) => (
+  <>
+    <Header />
+    {props.children}
+    <Footer />
+  </>
+)
 
 const Index = () => {
 
@@ -27,8 +32,9 @@ const Index = () => {
       <main className='root-main-content'>
         <Link href="/">
           <>
-          <Header/>
-          <Accounts />
+            <PlaceHolderComponent>
+              <Accounts />
+            </PlaceHolderComponent>
           </>
         </Link>
       </main>
