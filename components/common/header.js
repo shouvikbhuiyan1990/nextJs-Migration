@@ -5,8 +5,8 @@ import { useDispatch, useSelector } from "react-redux";
 import isEmpty from 'lodash/isEmpty';
 import Badge from 'react-bootstrap/Badge'
 import Link from 'next/link';
-// import Modal from '../component/joiningModal';
-// import RegistrationModal from '../component/registrationModal';
+import Modal from '../component/joiningModal';
+import RegistrationModal from '../component/registrationModal';
 import { toggleModal } from "../../store/actions/joiningModal";
 import { userlogin } from "../../store/actions/registration";
 import cookie from '../../utils/cookie';
@@ -554,8 +554,8 @@ const Header = () => {
                             </div>
                         }
                     </div>
-                    {/* <Modal show={showModal} /> */}
-                    {/* <RegistrationModal show={showRegistrationModal} /> */}
+                    <Modal show={showModal} />
+                    <RegistrationModal show={showRegistrationModal} />
                 </div>
             </header>
         </Styles>

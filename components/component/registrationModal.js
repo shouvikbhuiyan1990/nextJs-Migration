@@ -2,6 +2,7 @@ import React, { useState, useEffect, useCallback } from 'react';
 
 import Modal from 'react-bootstrap/Modal';
 import _isEmpty from 'lodash/isEmpty';
+import styled from 'styled-components';
 import { useDispatch, useSelector } from "react-redux";
 import { toggleRegistrationModal } from "../../store/actions/joiningModal";
 import { registerUser, resetRegistrationFlow, registerAsUserType, uploadIdCardandApplyForStudent } from "../../store/actions/registration";
@@ -18,7 +19,9 @@ import Button from 'react-bootstrap/Button';
 import Spinner from 'react-bootstrap/Spinner';
 import Alert from 'react-bootstrap/Alert';
 
-import './registrationModal.css';
+const Styles = styled.div`
+display:none;
+`;
 
 
 
@@ -113,154 +116,156 @@ const RegistrationModal = () => {
     }
 
     return (
-        <Modal
-            show={showRegistrationModal}
-            onHide={handleClose}
-            centered={true}
-            className='register-modal'
-            backdrop="static"
-        >
-            {
-                !registrationStatus &&
-                <Modal.Header closeButton>
-                    <Modal.Title>Complete Your Profile</Modal.Title>
-                </Modal.Header>
-            }
-            {
-                registrationStatus === 'success' &&
-                <Modal.Header>
-                    <Modal.Title>Registration Completed</Modal.Title>
-                </Modal.Header>
-            }
-            {
-                registrationStatus === 'error' &&
-                <Modal.Header closeButton>
-                    <Modal.Title><i className="fa fa-exclamation-triangle" aria-hidden="true"></i>
-                    </Modal.Title>
-                </Modal.Header>
-            }
-            {
-                !_isEmpty(googleProfile) &&
-                <Modal.Body>
-                    {
-                        step === 0 &&
-                        <DecideRoleForm
-                            {...googleProfile}
-                            updateFormObject={updateFormObject}
-                            loginAsStudent={loginAsStudent}
-                            loginAsTeacher={loginAsTeacher}
-                        />
+        <Styles>
+            <Modal
+                show={showRegistrationModal}
+                onHide={handleClose}
+                centered={true}
+                className='register-modal'
+                backdrop="static"
+            >
+                {
+                    !registrationStatus &&
+                    <Modal.Header closeButton>
+                        <Modal.Title>Complete Your Profile</Modal.Title>
+                    </Modal.Header>
+                }
+                {
+                    registrationStatus === 'success' &&
+                    <Modal.Header>
+                        <Modal.Title>Registration Completed</Modal.Title>
+                    </Modal.Header>
+                }
+                {
+                    registrationStatus === 'error' &&
+                    <Modal.Header closeButton>
+                        <Modal.Title><i className="fa fa-exclamation-triangle" aria-hidden="true"></i>
+                        </Modal.Title>
+                    </Modal.Header>
+                }
+                {
+                    !_isEmpty(googleProfile) &&
+                    <Modal.Body>
+                        {
+                            step === 0 &&
+                            <DecideRoleForm
+                                {...googleProfile}
+                                updateFormObject={updateFormObject}
+                                loginAsStudent={loginAsStudent}
+                                loginAsTeacher={loginAsTeacher}
+                            />
 
-                    }
-                    {
-                        step === 1 &&
-                        <FirstForm
-                            {...googleProfile}
-                            updateFormObject={updateFormObject}
-                            goBackToLastStep={goBackToLastStep}
-                            initRegistrationStepValue={initRegistrationStepValue}
-                            isStudentFlow={isStudentFlow}
-                        />
+                        }
+                        {
+                            step === 1 &&
+                            <FirstForm
+                                {...googleProfile}
+                                updateFormObject={updateFormObject}
+                                goBackToLastStep={goBackToLastStep}
+                                initRegistrationStepValue={initRegistrationStepValue}
+                                isStudentFlow={isStudentFlow}
+                            />
 
-                    }
-                    {
-                        step === 2 &&
-                        <SecondForm
-                            {...googleProfile}
-                            updateFormObject={updateFormObject}
-                            goBackToLastStep={goBackToLastStep}
-                            isStudentFlow={isStudentFlow}
-                        />
-                    }
-                    {
-                        step === 3 &&
-                        <ThirdForm
-                            updateFormObject={updateFormObject}
-                            goBackToLastStep={goBackToLastStep}
-                            imageUploadStatus={imageUploadStatus}
-                            isStudentFlow={isStudentFlow}
-                        />
-                    }
-                    {
-                        step === 4 &&
-                        <OtpForm
-                            updateFormObject={updateFormObject}
-                            goBackToLastStep={goBackToLastStep}
-                            isStudentFlow={isStudentFlow}
-                        />
-                    }
-                    {
-                        step === 5 &&
-                        <DescriptionForm
-                            updateFormObject={updateFormObject}
-                            goBackToLastStep={goBackToLastStep}
-                            imageUploadStatus={imageUploadStatus}
-                            disableBackButton
-                            isStudentFlow={isStudentFlow}
-                        />
-                    }
-                    {
-                        step === 6 &&
-                        <AddressForm
-                            updateFormObject={updateFormObject}
-                            goBackToLastStep={goBackToLastStep}
-                            imageUploadStatus={imageUploadStatus}
-                            isStudentFlow={isStudentFlow}
-                        />
-                    }
-                    {
-                        step === 7 && !isStudentFlow &&
-                        <CourseAddForm
-                            updateFormObject={updateFormObject}
-                            goBackToLastStep={goBackToLastStep}
-                            submitHandler={submitHandler}
-                            imageUploadStatus={imageUploadStatus}
-                            isImageUploading={isImageUploading}
-                        />
-                    }
-                    {
-                        step === 7 && isStudentFlow &&
-                        <IdCardForm
-                            updateFormObject={updateFormObject}
-                            goBackToLastStep={goBackToLastStep}
-                            submitHandler={submitHandler}
-                            imageUploadStatus={imageUploadStatus}
-                            isImageUploading={isImageUploading}
-                        />
-                    }
-                    {registrationRequested &&
-                        <div className='registration-completed centered-without-space'>
-                            <Spinner animation="border" role="status">
-                                <span className="sr-only">Loading...</span>
-                            </Spinner>
-                        </div>
-                    }
-                    {registrationStatus === 'error' &&
-                        <Alert key="alertOTPFailure" variant={'danger'}>
-                            {registrationErrorTxt ? registrationErrorTxt : 'Sorry, we had some trouble onboarding you, please try again after sometime'}
-                        </Alert>
-                    }
-                    {registrationStatus === 'success' &&
-                        <div className='registration-completed centered-without-space'>
-                            <i className="fa fa-check-circle" aria-hidden="true"></i>
-                        </div>
-                    }
+                        }
+                        {
+                            step === 2 &&
+                            <SecondForm
+                                {...googleProfile}
+                                updateFormObject={updateFormObject}
+                                goBackToLastStep={goBackToLastStep}
+                                isStudentFlow={isStudentFlow}
+                            />
+                        }
+                        {
+                            step === 3 &&
+                            <ThirdForm
+                                updateFormObject={updateFormObject}
+                                goBackToLastStep={goBackToLastStep}
+                                imageUploadStatus={imageUploadStatus}
+                                isStudentFlow={isStudentFlow}
+                            />
+                        }
+                        {
+                            step === 4 &&
+                            <OtpForm
+                                updateFormObject={updateFormObject}
+                                goBackToLastStep={goBackToLastStep}
+                                isStudentFlow={isStudentFlow}
+                            />
+                        }
+                        {
+                            step === 5 &&
+                            <DescriptionForm
+                                updateFormObject={updateFormObject}
+                                goBackToLastStep={goBackToLastStep}
+                                imageUploadStatus={imageUploadStatus}
+                                disableBackButton
+                                isStudentFlow={isStudentFlow}
+                            />
+                        }
+                        {
+                            step === 6 &&
+                            <AddressForm
+                                updateFormObject={updateFormObject}
+                                goBackToLastStep={goBackToLastStep}
+                                imageUploadStatus={imageUploadStatus}
+                                isStudentFlow={isStudentFlow}
+                            />
+                        }
+                        {
+                            step === 7 && !isStudentFlow &&
+                            <CourseAddForm
+                                updateFormObject={updateFormObject}
+                                goBackToLastStep={goBackToLastStep}
+                                submitHandler={submitHandler}
+                                imageUploadStatus={imageUploadStatus}
+                                isImageUploading={isImageUploading}
+                            />
+                        }
+                        {
+                            step === 7 && isStudentFlow &&
+                            <IdCardForm
+                                updateFormObject={updateFormObject}
+                                goBackToLastStep={goBackToLastStep}
+                                submitHandler={submitHandler}
+                                imageUploadStatus={imageUploadStatus}
+                                isImageUploading={isImageUploading}
+                            />
+                        }
+                        {registrationRequested &&
+                            <div className='registration-completed centered-without-space'>
+                                <Spinner animation="border" role="status">
+                                    <span className="sr-only">Loading...</span>
+                                </Spinner>
+                            </div>
+                        }
+                        {registrationStatus === 'error' &&
+                            <Alert key="alertOTPFailure" variant={'danger'}>
+                                {registrationErrorTxt ? registrationErrorTxt : 'Sorry, we had some trouble onboarding you, please try again after sometime'}
+                            </Alert>
+                        }
+                        {registrationStatus === 'success' &&
+                            <div className='registration-completed centered-without-space'>
+                                <i className="fa fa-check-circle" aria-hidden="true"></i>
+                            </div>
+                        }
 
-                </Modal.Body>
-            }
-            {!registrationStatus &&
-                <Modal.Footer>
-                    <p>By joining, you agree to Conzult's <a href={() => false}>Terms of Service</a> as well as to receive occasional emails from us.</p>
-                </Modal.Footer>
-            }
-            {registrationStatus === 'error' &&
-                <Modal.Footer>
-                    <Button onClick={restartProcess} className='single-button' variant="primary" type="button">
-                        Restart
+                    </Modal.Body>
+                }
+                {!registrationStatus &&
+                    <Modal.Footer>
+                        <p>By joining, you agree to Conzult's <a href={() => false}>Terms of Service</a> as well as to receive occasional emails from us.</p>
+                    </Modal.Footer>
+                }
+                {registrationStatus === 'error' &&
+                    <Modal.Footer>
+                        <Button onClick={restartProcess} className='single-button' variant="primary" type="button">
+                            Restart
                 </Button>
-                </Modal.Footer>
-            }
-        </Modal>
+                    </Modal.Footer>
+                }
+            </Modal>
+        </Styles>
     )
 };
 

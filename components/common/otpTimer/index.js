@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 
-import './index.css';
-
 const Styles = styled.div`
 .otpTime .text {
     margin-left: 6px;
