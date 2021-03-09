@@ -16,12 +16,12 @@ import cookie from '../../../utils/cookie';
 import { logout } from '../../../utils/helpers';
 
 import '../container.css';
-import { useHistory } from "react-router-dom";
+import { useRouter } from "next/router";
 
 const Dashboard = () => {
 
     const dispatch = useDispatch();
-    const history = useHistory();
+    const router = useRouter();
     const userInfo = useSelector(state => state.registration.userInfo) || {};
     const isUserInfoLoading = useSelector(state => state.registration.isUserInfoLoading);
 
@@ -32,7 +32,7 @@ const Dashboard = () => {
         }
         if (!isEmpty(userInfo)) {
             if (isEmpty(userInfo.teacher) && isEmpty(userInfo.teacherRequest) && isEmpty(userInfo.student) && isEmpty(userInfo.studentRequest)) {
-                history.push('/events');
+                router.push('/events');
             }
             const isTeacher = !isEmpty(userInfo.teacher) || !isEmpty(userInfo.teacherRequest);
             dispatch(getFeedbacks(cookie.get('googleAuthId')[0], isTeacher));

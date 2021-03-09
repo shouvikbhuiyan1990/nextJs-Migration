@@ -1,7 +1,7 @@
 import React from 'react';
 import dayjs from 'dayjs';
 import ReactTooltip from 'react-tooltip';
-import { useHistory } from 'react-router-dom';
+import { useRouter } from 'next/router';
 
 import './index.css';
 
@@ -18,10 +18,10 @@ const EventsTile = ({
         meetLink
     }
 }) => {
-    const history = useHistory();
+    const router = useRouter();
 
     const gotoMessages = () => {
-        history.push(`/dashboard/messages?id=${id}&user=${"Teacher Name"}`)
+        router.push(`/dashboard/messages?id=${id}&user=${"Teacher Name"}`)
     }
 
     return (

@@ -10,7 +10,6 @@ import Scrollspy from 'react-scrollspy';
 import { ReactTinyLink } from "react-tiny-link";
 import CourseTile from '../courseTile';
 import Slider from "react-slick";
-import { useHistory } from 'react-router-dom';
 import EducationDetailsForm from './educationDetailsForm';
 import JobDetailsForm from './jobDetailsForm';
 import IntroductionForm from './introductionForm';
@@ -21,6 +20,7 @@ import LinksForm from './linksForm';
 import Feedbacks from './feedbacks';
 import isEmpty from 'lodash/isEmpty';
 import { updateUserProfile, resetProfileUpdateStatus, uploadImage } from '../../../store/actions/registration';
+import { useRouter } from 'next/router';
 
 const Styles = styled.div`
 /* 2. Make nav sticky */
@@ -569,7 +569,7 @@ const ProfileDetails = ({
     experiences = [],
     educations = []
 }) => {
-    const history = useHistory();
+    const router = useRouter();
     const dispatch = useDispatch();
     const profileUpdateStatus = useSelector(state => state.registration.profileUpdateStatus);
 
@@ -829,7 +829,7 @@ const ProfileDetails = ({
     }
 
     const goToCourseDetailsPage = () => {
-        history.push({
+        router.push({
             pathname: `${id}/allCources`,
             state: {
                 id
