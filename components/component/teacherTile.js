@@ -23,7 +23,7 @@ const TeacherTile = ({
     return (
         <div className='teacher-details'>
             <SharePage
-                url={window.location.href}
+                url={typeof window!=='undefined' ? window.location.href : ''}
                 text={`Check out my profile in Conzult`}
                 subject='About my profile in Conzult'
                 show={showShareModal}

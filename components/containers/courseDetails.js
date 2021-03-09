@@ -9,14 +9,10 @@ import { checkIfProfileExists } from '../../store/actions/registration';
 import isEmpty from 'lodash/isEmpty';
 import cookie from '../../utils/cookie';
 
-import './container.css';
+import Styles from './container';
 
 const TeacherDetails = ({
-    match: {
-        params: {
-            id
-        }
-    }
+    id
 }) => {
     const dispatch = useDispatch();
     const userInfo = useSelector(state => state.registration.userInfo) || {};
@@ -37,22 +33,24 @@ const TeacherDetails = ({
     }, [dispatch, userInfo, isLoggedIn]);
 
     return (
-        <main>
-            <ScrollToTopOnMount />
-            <div className='course-listing'>
-                {(isCourseLoading || isUserInfoLoading) && <div className='loader'>
-                    <Spinner animation="border" role="status">
-                        <span className="sr-only">Loading...</span>
-                    </Spinner>
+        <Styles>
+            <main>
+                <ScrollToTopOnMount />
+                <div className='course-listing'>
+                    {(isCourseLoading || isUserInfoLoading) && <div className='loader'>
+                        <Spinner animation="border" role="status">
+                            <span className="sr-only">Loading...</span>
+                        </Spinner>
+                    </div>
+                    }
+                    {!(isCourseLoading || isUserInfoLoading) && <React.Fragment>
+                        <CourseDetailsTile {...course} teacher={teacher} />
+                        <TeacherSlotBook {...course} isApprovedStudent={!isEmpty(userInfo.student)} />
+                    </React.Fragment>
+                    }
                 </div>
-                }
-                {!(isCourseLoading || isUserInfoLoading) && <React.Fragment>
-                    <CourseDetailsTile {...course} teacher={teacher} />
-                    <TeacherSlotBook {...course} isApprovedStudent={!isEmpty(userInfo.student)} />
-                </React.Fragment>
-                }
-            </div>
-        </main>
+            </main>
+        </Styles>
     );
 };
 

@@ -17,6 +17,53 @@ import {
 } from "react-share";
 
 
+
+const Styles = styled.div`
+.share-page-modal button {
+    margin: 0 10px;
+}
+
+.share-page-modal button:first-child {
+    margin-left: 0;
+}
+
+.share-page-modal button:last-child {
+    margin-right: 0;
+}
+
+.share-page-modal .modal-header p {
+    width: 100%;
+    text-align: center;
+}
+
+.fixed-pos {
+    position: fixed;
+    right: 2px;
+    display: flex;
+    flex-direction: column;
+    top: 50%;
+    padding: 20px 10px;
+    transform: translateY(-50%);
+    -webkit-box-shadow: 0 0 5px 1px rgba(0, 0, 0, .05);
+    box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.35);
+}
+
+.fixed-pos>button:first-child {
+    margin-top: 0;
+}
+
+.fixed-pos>button:last-child {
+    margin-bottom: 0;
+}
+
+.fixed-pos>button {
+    margin: 10px 0;
+}
+`;
+
+const WrapShareButtons = styled.div`
+text-align: center;
+`;
 const SharePage = (props) => {
     let url = '';
 
@@ -26,53 +73,6 @@ const SharePage = (props) => {
     else {
         url = props.url;
     }
-
-    const Styles = styled.div`
-        .share-page-modal button {
-            margin: 0 10px;
-        }
-        
-        .share-page-modal button:first-child {
-            margin-left: 0;
-        }
-        
-        .share-page-modal button:last-child {
-            margin-right: 0;
-        }
-        
-        .share-page-modal .modal-header p {
-            width: 100%;
-            text-align: center;
-        }
-        
-        .fixed-pos {
-            position: fixed;
-            right: 2px;
-            display: flex;
-            flex-direction: column;
-            top: 50%;
-            padding: 20px 10px;
-            transform: translateY(-50%);
-            -webkit-box-shadow: 0 0 5px 1px rgba(0, 0, 0, .05);
-            box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.35);
-        }
-        
-        .fixed-pos>button:first-child {
-            margin-top: 0;
-        }
-        
-        .fixed-pos>button:last-child {
-            margin-bottom: 0;
-        }
-        
-        .fixed-pos>button {
-            margin: 10px 0;
-        }
-    `;
-
-    const WrapShareButtons = styled.div`
-        text-align: center;
-    `;
 
     if (!props.noModal) {
         return (

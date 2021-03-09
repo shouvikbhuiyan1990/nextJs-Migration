@@ -2,7 +2,7 @@
 
 export default {
     get: function (key) {
-        if (typeof window !== undefined && typeof document !== undefined && typeof document.cookie !== undefined) {
+        if (typeof window !== 'undefined' && typeof document !== 'undefined' && typeof document.cookie !== 'undefined') {
             let cookieSet = document.cookie.split('; '),
                 cookieArray = cookieSet.filter((cookie) => {
                     return cookie.indexOf(`${key}=`) === 0

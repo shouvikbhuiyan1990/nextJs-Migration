@@ -53,7 +53,7 @@ const TeacherCourses = ({
     return (
         <div className='courses-teacher'>
             <SharePage
-                url={window.location.href}
+                url={typeof window!=='undefined' ? window.location.href : ''}
                 text={`Check out my profile in Conzult`}
                 subject='About my profile in Conzult'
                 show={showShareModal}

@@ -10,8 +10,6 @@ import GoogleCalendar from '../googleCalendar';
 import { updateCalendar, bookSlot } from "../../../store/actions/booking";
 import cookie from '../../../utils/cookie';
 
-import './index.css';
-
 
 const Calendar = ({
     showInPopup,

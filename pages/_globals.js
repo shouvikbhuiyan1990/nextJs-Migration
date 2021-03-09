@@ -398,6 +398,230 @@ button.share-btn i {
     flex: 1;
 }
 
+.calendar-modal .modal-dialog {
+    max-width: none;
+}
+
+.calendar-modal a, .calendar-modal a:not([href]):not([class]) {
+    color: #4a73e8;
+    text-decoration: none;
+    padding: 0 0 6px;
+    border-bottom: 1px solid #ddd;
+    cursor: pointer;
+}
+
+.strikethrough {
+    position: relative;
+}
+
+.strikethrough:before {
+    position: absolute;
+    content: "";
+    left: 0;
+    top: 50%;
+    right: 0;
+    border-top: 2px solid;
+    border-color: #dc3545;
+    -webkit-transform: rotate(-6deg);
+    -moz-transform: rotate(-6deg);
+    -ms-transform: rotate(-6deg);
+    -o-transform: rotate(-6deg);
+    transform: rotate(-6deg);
+}
+
+.calendar-modal .btn-holder {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    padding: 34px 0;
+}
+
+.calendar-modal .btn-holder .buttons {
+    flex-direction: column;
+    display: flex;
+    justify-content: flex-end;
+    align-self: center;
+    width: 100%;
+}
+
+.calendar-modal .btn-holder .buttons button:first-child, .calendar-modal .btn-holder .info-status {
+    margin-bottom: 16px;
+}
+
+.calendar-modal .btn-holder .info-status .info {
+    display: flex;
+    align-items: center;
+    padding: 4px 0;
+    font-size: 14px;
+}
+
+.calendar-modal .btn-holder .info-status .info p.color {
+    width: 40px;
+    height: 5px;
+    background-color: #ddd;
+    border-radius: 4px;
+    margin-right: 18px;
+}
+
+.calendar-modal .btn-holder .info-status .info.available p.color {
+    background-color: #1dbf73;
+}
+
+.calendar-modal .btn-holder .info-status .info.booked p.color {
+    background-color: #F0675F;
+}
+
+.calendar-modal .modal-content {
+    min-height: 80vh;
+    position: relative;
+}
+
+.calendar-modal .modal-content .loader {
+    position: absolute;
+    background: rgba(255, 255, 255, 0.3);
+    z-index: 9;
+    height: 100%;
+}
+
+.calendar-modal .date-holder {
+    padding: 25px 15px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.calendar-modal .modal-header .close {
+    right: 20px;
+}
+
+.calendar-modal .modal-body {
+    margin: 0 24px 0;
+}
+
+.calendar-modal .day-holder {
+    max-height: 400px;
+    overflow: auto;
+}
+
+.calendar-modal .date-holder-conatiner .slick-current {
+    border-bottom: 4px solid #1dbf73;
+    font-family: 'lato-bold';
+}
+
+.calendar-modal .day-holder .day-separator {
+    padding: 16px 0;
+    border-bottom: 1px solid #ddd;
+    display: flex;
+    flex-direction: column;
+}
+
+.calendar-modal .day-holder .day-separator .day-time {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin-bottom: 16px;
+    width: 150px;
+}
+
+.calendar-modal .day-holder .day-separator .day-time i {
+    margin-right: 8px;
+    margin-bottom: 4px;
+}
+
+.calendar-modal .day-holder .day-separator:last-child {
+    border: none;
+}
+
+.calendar-modal .day-holder .day-separator .time-slots .slot-pill {
+    width: 30%;
+    padding: 4px;
+}
+
+.calendar-modal .day-holder.booking-flow .day-separator .time-slots .slot-pill {
+    width: 40%;
+}
+
+.calendar-modal .day-holder.booking-flow .day-separator .time-slots .slot-pill span {
+    width: 140px;
+}
+
+.calendar-modal .day-holder .day-separator .time-slots .slot-pill span {
+    width: 84px;
+    border-radius: 3px;
+    border: 1px solid #e0e0e4;
+    padding: 5px 0;
+    display: inline-block;
+    text-align: center;
+    color: #2d2d32;
+    cursor: pointer;
+}
+
+.calendar-modal .day-holder .day-separator .time-slots .slot-pill.available span {
+    border-color: #1dbf73;
+}
+
+.calendar-modal.modal .buttons button {
+    padding: 15px 35px;
+}
+
+.calendar-modal .date-holder .slot-availability {
+    font-size: 12px;
+    color: #1dbf73;
+}
+
+.calendar-modal .day-holder.no-date-cont {
+    min-height: 250px;
+    display: FLEX;
+    justify-content: center;
+    align-items: center;
+}
+
+.calendar-modal .day-holder.no-date-cont .no-date {
+    text-align: center;
+}
+
+.calendar-modal .day-holder.no-date-cont .no-date i {
+    font-size: 36px;
+    margin-bottom: 10px;
+    color: #F06860;
+}
+
+.calendar-modal .day-holder.no-date-cont .no-date p {
+    font-size: 16px;
+}
+
+.calendar-modal .day-holder .day-separator .time-slots .slot-pill.hold span {
+    background-color: #f0f0f5;
+    color: #28328c;
+    border: 1px solid #28328c;
+}
+
+.calendar-modal .day-holder .day-separator .time-slots .slot-pill.booked span {
+    border-color: #F0675F;
+}
+
+.calendar-modal .day-holder .day-separator .time-slots .slot-pill span:hover {
+    background-color: #f0f0f5;
+    color: #28328c;
+    border: 1px solid #28328c;
+}
+
+.calendar-modal .day-holder .day-separator .time-slots {
+    display: flex;
+    flex-wrap: wrap;
+    flex: 1;
+}
+
+.calendar-modal .day-holder-container .slick-prev:before, .calendar-modal .day-holder-container .slick-next:before {
+    display: none;
+}
+
+
+@media screen and (min-width: 750px) {
+    .calendar-modal .day-holder .day-separator .time-slots .slot-pill {
+        width: 20%;
+    }
+}
+
 
 @media screen and (min-width: 1025px) {
 	.events-container .heading {
@@ -416,6 +640,37 @@ button.share-btn i {
     }
     .modal-body {
         padding: 0 36px 24px;
+    }
+    .calendar-modal .modal-dialog {
+        max-width: none;
+        width: 70%;
+    }
+    .calendar-modal .day-holder .day-separator .day-time {
+        justify-content: center;
+        margin-bottom: 0;
+    }
+    .calendar-modal .btn-holder .buttons button:first-child {
+        margin-right: 16px;
+        margin-bottom: 0;
+    }
+    .calendar-modal .btn-holder {
+        flex-direction: row;
+    }
+    .calendar-modal .btn-holder .buttons {
+        flex-direction: row;
+        width: auto;
+    }
+    .calendar-modal .date-holder-conatiner {
+        margin-left: 150px;
+    }
+    .calendar-modal .day-holder .day-separator {
+        flex-direction: row;
+    }
+    .calendar-modal .day-holder .day-separator .time-slots .slot-pill {
+        width: 14.285%;
+    }
+    .calendar-modal .day-holder.booking-flow .day-separator .time-slots .slot-pill {
+        width: 20.285%;
     }
 }
 `;
