@@ -53,7 +53,6 @@ const Styles = styled.div`
     }
 `;
 
-// import './index.css';
 const TABS_DATA = [{
     id: '1',
     text: 'Current Month'

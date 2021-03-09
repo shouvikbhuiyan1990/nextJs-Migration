@@ -1,4 +1,5 @@
 import React, { useCallback, useState, useEffect, useRef } from 'react';
+import { useRouter } from 'next/router';
 import Carousel from 'react-bootstrap/Carousel';
 import styled from 'styled-components';
 import { useHistory } from 'react-router-dom';
@@ -102,6 +103,7 @@ const Styles = styled.div`
     transform: translateY(-50%);
     left: 14px;
     color: #404145;
+    font-size: 1rem;
 }
 
 .main-content .popular {
@@ -260,6 +262,7 @@ const Styles = styled.div`
 `;
 
 const Hero = () => {
+    const router = useRouter();
     const cache = new Map();
     const history = useHistory();
     const { uniqueSubject } = useSelector(state => state.cources.allCources);
@@ -319,10 +322,10 @@ const Hero = () => {
 
     const gotoSearchPage = (tag) => {
         if (!tag) {
-            history.push(`/find?text=${searchTxt}&tag=all`);
+            router.push(`/find?text=${searchTxt}&tag=all`);
         }
         else {
-            history.push(`/find?text=${encodeURIComponent(tag.displayText)}&tag=${tag.tag}`);
+            router.push(`/find?text=${encodeURIComponent(tag.displayText)}&tag=${tag.tag}`);
         }
     }
 

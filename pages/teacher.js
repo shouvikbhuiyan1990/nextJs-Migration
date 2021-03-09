@@ -1,4 +1,5 @@
 import React from 'react';
+import { useRouter } from 'next/router';
 import Layout from './_Layout';
 import ExpertsLandingPage from '../components/containers/expertsLanding';
 import styled from 'styled-components';
@@ -14,7 +15,9 @@ const Styles = styled.body`
 `;
 
 
-const Experts = () => {
+const Teacher = () => {
+    const router = useRouter()
+    const { pid } = router.query
 
     return (
         <Styles>
@@ -28,4 +31,4 @@ const Experts = () => {
     );
 };
 
-export default Experts;
+export default Teacher;

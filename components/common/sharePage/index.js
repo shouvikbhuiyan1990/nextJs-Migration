@@ -15,7 +15,6 @@ import {
     WhatsappShareButton,
     WhatsappIcon
 } from "react-share";
-import './index.css';
 
 
 const SharePage = (props) => {

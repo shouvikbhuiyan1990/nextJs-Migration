@@ -94,7 +94,6 @@ const TeacherSlotBook = ({
             };
 
             post(information);
-            // history.push('/confirmation');
         }
     }, [bookingStatus, history, displayCalendar, post, paymentDetails])
 

@@ -5,8 +5,10 @@ export default function App({ Component, pageProps }) {
   const store = useStore(pageProps.initialReduxState)
 
   return (
-    <Provider store={store}>
-      <Component {...pageProps} />
-    </Provider>
+    <div id="root">
+      <Provider store={store}>
+        <Component {...pageProps} />
+      </Provider>
+    </div>
   )
 }

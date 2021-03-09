@@ -1,8 +1,9 @@
 import React from 'react';
-import Layout from './_Layout';
-import ExpertsLandingPage from '../components/containers/expertsLanding';
+import { useRouter } from 'next/router';
+import Layout from '../_Layout';
 import styled from 'styled-components';
-import GlobalFonts from './_globals';
+import SearchLandingPage from '../../components/containers/searchLandingPage';
+import GlobalFonts from '../_globals';
 
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -14,18 +15,20 @@ const Styles = styled.body`
 `;
 
 
-const Experts = () => {
+const Find = () => {
+    const router = useRouter()
+    const { text, tag } = router.query;
 
     return (
         <Styles>
             <GlobalFonts />
             <main className='root-main-content'>
                 <Layout>
-                    <ExpertsLandingPage />
+                    <SearchLandingPage text={text} tag={tag} />
                 </Layout>
             </main>
         </Styles>
     );
 };
 
-export default Experts;
+export default Find;

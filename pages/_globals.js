@@ -24,6 +24,10 @@ html {
 	box-sizing: border-box;
 }
 
+p{
+	margin: 0;
+}
+
 ul li {
     list-style: none;
 }

@@ -2,8 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 import isEmpty from 'lodash/isEmpty';
 import Link from 'next/link';
-import noImage from '../../images/no-image-large.jpg';
-import noImageProfile from '../../images/no-image-profile.png';
 
 import { getCountryFromLocale, getCurrencyFromLocale } from '../../utils/helpers';
 
@@ -183,15 +181,23 @@ const CourseTile = ({
     return (
         <Styles>
             <div className='course-tile'>
-                {!isEditable && <Link href={`/courses/${courseId}`} className='course-details-link'></Link>}
-                <div className='course-tile-header' style={{ backgroundImage: `url(${iconUrl || noImage})` }}>
+                {
+                    !isEditable && <Link href={`/courses/${courseId}`}>
+                        <a className='course-details-link'></a>
+                    </Link>
+                }
+                <div className='course-tile-header' style={{ backgroundImage: `url(${iconUrl || 'https://randomuser.me/api/portraits/lego/3.jpg'})` }}>
                 </div>
                 <div className='course-tile-body'>
                     <div className='avata-container'>
-                        <div style={{ backgroundImage: `url(${profileUrl || noImageProfile})` }} className='avatar'></div>
+                        <div style={{ backgroundImage: `url(${profileUrl || 'https://randomuser.me/api/portraits/lego/3.jpg'})` }} className='avatar'></div>
                         <div className='name'>
                             {blockTeacherRedirect && <p>{teacherName}</p>}
-                            {!blockTeacherRedirect && <Link href={`/teacher/${teacherId}`}><p>{teacherName}</p></Link>}
+                            {!blockTeacherRedirect &&
+                                <Link href={`/teacher/${teacherId}`}>
+                                    <a><p>{teacherName}</p></a>
+                                </Link>
+                            }
                             <p>{subject}</p>
                         </div>
                     </div>
@@ -220,6 +226,6 @@ export default CourseTile;
 CourseTile.defaultProps = {
     pricing: {
         IN: {},
-        US: {} 
+        US: {}
     }
 };

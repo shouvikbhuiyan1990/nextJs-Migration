@@ -2,7 +2,7 @@ import React from "react";
 import Hero from '../component/hero';
 import Styles from './container';
 import ScrollToTopMenu from '../common/scrollToTopOnMount';
-// import CourseTileContainer from '../component/courseTileContainer';
+import CourseTileContainer from '../component/courseTileContainer';
 
 const Home = () => {
     return (
@@ -10,7 +10,7 @@ const Home = () => {
             <main>
                 <ScrollToTopMenu />
                 <Hero />
-                {/* <CourseTileContainer /> */}
+                <CourseTileContainer />
             </main>
         </Styles>
     );

@@ -6,15 +6,10 @@ import Spinner from 'react-bootstrap/Spinner';
 // import TeacherTile from '../component/teacherTile';
 import ProfileDetails from '../component/profileDetails';
 import ScrollToTopOnMount from '../common/scrollToTopOnMount';
-
-import './container.css';
+import Styles from './container';
 
 const TeacherDetails = ({
-    match: {
-        params: {
-            id
-        }
-    },
+    id,
     isStudent
 }) => {
     const dispatch = useDispatch();
@@ -36,65 +31,67 @@ const TeacherDetails = ({
     }, [dispatch, id, isStudent]);
 
     return (
-        <main>
-            <ScrollToTopOnMount />
-            {!teacherDetails.errorCode &&
-                <div className='teacher-listing'>
-                    {!isTeachersDetailsLoading &&
-                        < div className='share-btn-container'>
-                            <button className='btn share-btn' onClick={() => setShareModalDisplay(!showShareModal)}>
-                                <i className="fa fa-share-alt" aria-hidden="true"></i>
-                                <span>share</span>
-                            </button>
+        <Styles>
+            <main>
+                <ScrollToTopOnMount />
+                {!teacherDetails.errorCode &&
+                    <div className='teacher-listing'>
+                        {!isTeachersDetailsLoading &&
+                            < div className='share-btn-container'>
+                                <button type="button" className='btn share-btn' onClick={() => setShareModalDisplay(!showShareModal)}>
+                                    <i className="fa fa-share-alt" aria-hidden="true"></i>
+                                    <span>share</span>
+                                </button>
+                            </div>
+                        }
+                        <SharePage
+                            url={typeof window !== 'undefined' ? window.location.href : ''}
+                            text={`Check out my profile in Conzult`}
+                            subject='About my profile in Conzult'
+                            show={showShareModal}
+                            setDisplay={() => setShareModalDisplay(!showShareModal)}
+                        />
+                        {isTeachersDetailsLoading && <div className='loader'>
+                            <Spinner animation="border" role="status">
+                                <span className="sr-only">Loading...</span>
+                            </Spinner>
                         </div>
-                    }
-                    <SharePage
-                        url={window.location.href}
-                        text={`Check out my profile in Conzult`}
-                        subject='About my profile in Conzult'
-                        show={showShareModal}
-                        setDisplay={() => setShareModalDisplay(!showShareModal)}
-                    />
-                    {isTeachersDetailsLoading && <div className='loader'>
-                        <Spinner animation="border" role="status">
-                            <span className="sr-only">Loading...</span>
-                        </Spinner>
+                        }
+                        {!isTeachersDetailsLoading && !isStudent && <React.Fragment>
+                            {/* <TeacherTile {...teacherDetails.teacher} bestRated={courses[0] ? courses[0].subject : ''} /> */}
+                            {/*<TeacherCourses teacher={teacherDetails.teacher} courses={teacherDetails.courses} /> */}
+                            <ProfileDetails
+                                {...teacherDetails.teacher}
+                                bestRated={courses[0] ? courses[0].subject : ''}
+                                teacher={teacherDetails.teacher}
+                                courses={teacherDetails.courses}
+                                experiences={teacherDetails.experiences}
+                                feedbacks={teacherDetails.feedbacks}
+                                educations={teacherDetails.educations}
+                            />
+                        </React.Fragment>
+                        }
+                        {!isTeachersDetailsLoading && isStudent && <React.Fragment>
+                            {/* <TeacherTile {...teacherDetails.teacher} bestRated={courses[0] ? courses[0].subject : ''} /> */}
+                            {/*<TeacherCourses teacher={teacherDetails.teacher} courses={teacherDetails.courses} /> */}
+                            <ProfileDetails
+                                {...teacherDetails.student}
+                                teacher={teacherDetails.student}
+                                experiences={teacherDetails.experiences}
+                                educations={teacherDetails.educations}
+                                isStudent={true}
+                            />
+                        </React.Fragment>
+                        }
                     </div>
-                    }
-                    {!isTeachersDetailsLoading && !isStudent && <React.Fragment>
-                        {/* <TeacherTile {...teacherDetails.teacher} bestRated={courses[0] ? courses[0].subject : ''} /> */}
-                        {/*<TeacherCourses teacher={teacherDetails.teacher} courses={teacherDetails.courses} /> */}
-                        <ProfileDetails
-                            {...teacherDetails.teacher}
-                            bestRated={courses[0] ? courses[0].subject : ''}
-                            teacher={teacherDetails.teacher}
-                            courses={teacherDetails.courses}
-                            experiences={teacherDetails.experiences}
-                            feedbacks={teacherDetails.feedbacks}
-                            educations={teacherDetails.educations}
-                        />
-                    </React.Fragment>
-                    }
-                    {!isTeachersDetailsLoading && isStudent && <React.Fragment>
-                        {/* <TeacherTile {...teacherDetails.teacher} bestRated={courses[0] ? courses[0].subject : ''} /> */}
-                        {/*<TeacherCourses teacher={teacherDetails.teacher} courses={teacherDetails.courses} /> */}
-                        <ProfileDetails
-                            {...teacherDetails.student}
-                            teacher={teacherDetails.student}
-                            experiences={teacherDetails.experiences}
-                            educations={teacherDetails.educations}
-                            isStudent={true}
-                        />
-                    </React.Fragment>
-                    }
-                </div>
-            }
-            {teacherDetails.errorCode &&
-                <div className='teacher-listing centered-without-space'>
-                    <h2>{teacherDetails.displayText || 'Something went wrong'}</h2>
-                </div>
-            }
-        </main >
+                }
+                {teacherDetails.errorCode &&
+                    <div className='teacher-listing centered-without-space'>
+                        <h2>{teacherDetails.displayText || 'Something went wrong'}</h2>
+                    </div>
+                }
+            </main >
+        </Styles>
     );
 };
 

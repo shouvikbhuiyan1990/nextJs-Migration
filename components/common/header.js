@@ -1,7 +1,6 @@
 import React, { useEffect, useState, useCallback, useRef } from 'react';
 import debounce from 'lodash/debounce';
 import styled from 'styled-components';
-import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
 import isEmpty from 'lodash/isEmpty';
 import Badge from 'react-bootstrap/Badge'
@@ -16,6 +15,7 @@ import PageLoader from './pageLoader';
 
 import { logout } from '../../utils/helpers';
 import { checkNotifications, getSuggestions } from '../../store/actions/global';
+import { useRouter } from 'next/router';
 
 
 const Styles = styled.div`
@@ -344,7 +344,7 @@ header.header-fixed .btn-custom, header.header-fixed .btn-custom:hover {
 
 const Header = () => {
     const cache = new Map();
-    const history = useHistory();
+    const router = useRouter();
     const showModal = useSelector(state => state.joinModal.showModal);
     const imageUrl = useSelector(state => state.joinModal.googleSignupProfile.imageUrl);
     const profileImageUrl = useSelector(state => state.registration.profileImageUrl);
@@ -428,10 +428,10 @@ const Header = () => {
 
     const gotoSearchPage = (tag) => {
         if (!tag) {
-            history.push(`/find?text=${searchTxt}&tag=all`);
+            router.push(`/find?text=${searchTxt}&tag=all`);
         }
         else {
-            history.push(`/find?text=${encodeURIComponent(tag.displayText)}&tag=${tag.tag}`);
+            router.push(`/find?text=${encodeURIComponent(tag.displayText)}&tag=${tag.tag}`);
         }
     }
 
