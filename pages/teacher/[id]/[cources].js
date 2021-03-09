@@ -1,7 +1,7 @@
 import React from 'react';
 import { useRouter } from 'next/router';
+import dynamic from "next/dynamic";
 import Layout from '../../_Layout';
-import CourseLandingByUser from '../../../components/containers/courseLandingPageByUser';
 import styled from 'styled-components';
 import GlobalFonts from '../../_globals';
 
@@ -15,6 +15,14 @@ const Styles = styled.body`
 `;
 
 
+
+const Details = dynamic(
+    () => {
+        return import("../../../components/containers/courseLandingPageByUser");
+    },
+    { ssr: false }
+);
+
 const Teacher = () => {
     const router = useRouter()
     const { id } = router.query;
@@ -24,7 +32,7 @@ const Teacher = () => {
             <GlobalFonts />
             <main className='root-main-content'>
                 <Layout>
-                    <CourseLandingByUser id={id} />
+                    <Details id={id} />
                 </Layout>
             </main>
         </Styles>
