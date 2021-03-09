@@ -26,6 +26,57 @@ header {
     width: 100%;
 }
 
+
+
+.typeahead {
+    border: 1px solid #eee;
+    border-top: none;
+    position: absolute;
+    top: 42px;
+    z-index: 9;
+    background: #fff;
+    width: 100%;
+    color: #404145;
+    padding: 0;
+    max-height: 200px;
+    overflow: auto;
+    -webkit-box-shadow: -1px 20px 15px -11px rgb(0 0 0 / 41%);
+    -moz-box-shadow: -1px 20px 15px -11px rgb(0 0 0 / 41%);
+    box-shadow: -1px 20px 15px -11px rgb(0 0 0 / 41%);
+}
+
+.typeahead p {
+    padding: 8px 20px 0;
+    cursor: pointer;
+    margin: 0;
+}
+
+.typeahead p .holder {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #ccc;
+}
+
+.typeahead p i {
+    transform: rotate3d(1, 1, 1, 40deg);
+}
+
+.typeahead p span {
+    width: 100%;
+    display: block;
+}
+
+.typeahead p:hover {
+    background-color: #ccc;
+    margin-top: -1px;
+}
+
+.typeahead p:last-child .holder {
+    border-bottom: none;
+}
+
 .logo-search img {
     max-width: 200px;
     padding-right: 10px;
@@ -215,7 +266,7 @@ header.header-fixed .logo-search button.btn-custom, header.header-fixed .logo-se
     padding-bottom: 8px;
 }
 
-header.header-fixed form i {
+header.header-fixed form > i {
     width: 16px;
     height: 16px;
     position: absolute;

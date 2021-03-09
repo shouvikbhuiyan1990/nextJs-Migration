@@ -1,6 +1,6 @@
 import React from 'react';
 import Link from 'next/link'
-import Accounts from '../components/component/accounts';
+import Hero from '../components/component/hero';
 import Header from '../components/common/header';
 import Footer from '../components/common/footer';
 import styled from 'styled-components';
@@ -31,11 +31,9 @@ const Index = () => {
       <GlobalFonts />
       <main className='root-main-content'>
         <Link href="/">
-          <>
-            <PlaceHolderComponent>
-              <Accounts />
-            </PlaceHolderComponent>
-          </>
+          <PlaceHolderComponent>
+            <Hero />
+          </PlaceHolderComponent>
         </Link>
       </main>
     </Styles>
