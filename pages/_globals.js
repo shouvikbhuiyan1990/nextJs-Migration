@@ -112,6 +112,8 @@ button.share-btn i {
 .avatar {
 	background-size: cover;
 	border-radius: 50%;
+    width: 50px;
+    height: 50px;
 }
 
 .active-notification {
