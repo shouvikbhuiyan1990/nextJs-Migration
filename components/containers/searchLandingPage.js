@@ -27,7 +27,7 @@ const SearchLandingPage = ({
             let query = new URLSearchParams(location.search);
             dispatch(getSearchResults(query.get('text'), query.get('tag')));
         }
-    }, [dispatch]);
+    }, [dispatch, text, tag]);
 
     return (
         <Styles>
