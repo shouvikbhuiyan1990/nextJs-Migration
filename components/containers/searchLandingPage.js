@@ -20,7 +20,13 @@ const SearchLandingPage = ({
     const errorInSearch = useSelector(state => state.global.errorInSearch);
 
     useEffect(() => {
-        dispatch(getSearchResults(text, tag));
+        if (text && tag) {
+            dispatch(getSearchResults(text, tag));
+        }
+        else {
+            let query = new URLSearchParams(location.search);
+            dispatch(getSearchResults(query.get('text'), query.get('tag')));
+        }
     }, [dispatch]);
 
     return (

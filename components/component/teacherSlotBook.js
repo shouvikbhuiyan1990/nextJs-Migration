@@ -116,8 +116,6 @@ const Styled = styles.div`
 }
 `;
 
-// import './teacherSlotBook.css';
-
 const TeacherSlotBook = ({
     pricing,
     teacherId,

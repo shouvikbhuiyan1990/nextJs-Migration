@@ -1,13 +1,16 @@
 import React from "react";
 import Confirm from '../component/confirm';
 import ScrollToTopMenu from '../common/scrollToTopOnMount';
+import Styles from './container';
 
 const ConfirmationPage = () => {
     return (
-        <main>
-            <ScrollToTopMenu />
-            <Confirm />
-        </main>
+        <Styles>
+            <main>
+                <ScrollToTopMenu />
+                <Confirm />
+            </main>
+        </Styles>
     );
 };
 

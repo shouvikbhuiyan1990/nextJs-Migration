@@ -186,7 +186,7 @@ const CourseTile = ({
                         <a className='course-details-link'></a>
                     </Link>
                 }
-                <div className='course-tile-header' style={{ backgroundImage: `url(${iconUrl || 'https://randomuser.me/api/portraits/lego/3.jpg'})` }}>
+                <div className='course-tile-header' style={{ backgroundImage: `url(${iconUrl || 'https://via.placeholder.com/250'})` }}>
                 </div>
                 <div className='course-tile-body'>
                     <div className='avata-container'>

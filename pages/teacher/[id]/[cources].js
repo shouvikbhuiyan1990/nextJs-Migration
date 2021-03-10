@@ -10,7 +10,7 @@ import "slick-carousel/slick/slick-theme.css";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'font-awesome/css/font-awesome.min.css';
 
-const Styles = styled.body`
+const Styles = styled.div`
   font-family: 'lato-regular';
 `;
 

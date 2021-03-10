@@ -91,7 +91,6 @@ const UserCourses = ({
     }
 
     const confirmDelete = () => {
-        // debugger
         let bodyObject = {};
         !cachedIsReqFlow ? bodyObject.courseId = cachedCourseFields.courseId || cachedCourseFields.id : bodyObject.requestId = cachedCourseFields.id;
         dispatch(deleteCourse(cookie.get('googleAuthId')[0], JSON.stringify(bodyObject), cachedIsReqFlow));
@@ -99,7 +98,6 @@ const UserCourses = ({
     }
 
     const handleDelete = (courseFields, isReqFlow) => {
-        // debugger
         setShowDeleteModal(true);
         cachedCourseFields = courseFields;
         cachedIsReqFlow = isReqFlow;

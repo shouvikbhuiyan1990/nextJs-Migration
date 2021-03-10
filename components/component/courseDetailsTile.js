@@ -156,7 +156,7 @@ const CourseDetailsTile = ({
                         <span>share</span>
                     </button>
                 </div>
-                <div className='course-image' style={{ backgroundImage: `url(${iconUrl || 'https://randomuser.me/api/portraits/lego/3.jpg'})` }}></div>
+                <div className='course-image' style={{ backgroundImage: `url(${iconUrl || 'https://via.placeholder.com/250'})` }}></div>
                 <h4>About this course</h4>
                 <p className='description'>{description}</p>
             </div>
