@@ -6,6 +6,7 @@ import isEmpty from 'lodash/isEmpty';
 import Badge from 'react-bootstrap/Badge'
 import Link from 'next/link';
 import Modal from '../component/joiningModal';
+import ActiveLink from '../common/activeLink';
 import RegistrationModal from '../component/registrationModal';
 import { toggleModal } from "../../store/actions/joiningModal";
 import { userlogin } from "../../store/actions/registration";
@@ -524,7 +525,9 @@ const Header = () => {
                         </form>
                     </div>
                     <div className='links'>
-                        <Link href='/our-experts' activeclassName='active'>Our Experts</Link>
+                        <ActiveLink activeClassName="active" href="/our-experts">
+                            <a>Our Experts</a>
+                        </ActiveLink>
                         {isLoggedIn &&
                             <React.Fragment>
                                 <div onClick={(e) => { e.stopPropagation(); setDisplayProfileLinks(!displayProfileLinks) }} className='profile-img' style={{ backgroundImage: `url(${profileImageUrl || imageUrl || cookie.get('profileImageUrl')[0]})` }}>

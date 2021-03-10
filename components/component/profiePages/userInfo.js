@@ -1,5 +1,5 @@
 import React from 'react';
-import Link from 'next/link';
+import ActiveLink from '../../common/activeLink';
 import { useSelector } from "react-redux";
 import cookie from '../../../utils/cookie'
 import styled from 'styled-components';
@@ -264,21 +264,21 @@ const UserInfo = ({
             <div className='user-info'>
                 <div className='avatar' style={{ backgroundImage: `url(${profileImageUrl || imageUrl || cookie.get('profileImageUrl')[0]})` }}></div>
                 <div className='links'>
-                    <Link href='/dashboard/feeds' activeclassName='active'>Feeds</Link>
+                    <ActiveLink href='/dashboard/feeds' activeClassName='active'><a>Feeds</a></ActiveLink>
                     {!isGuest &&
-                        <Link href='/dashboard' exact activeclassName='active'>Profile</Link>
+                        <ActiveLink href='/dashboard' exact activeClassName='active'><a>Profile</a></ActiveLink>
                     }
-                    <Link href='/events' activeclassName='active'>Events</Link>
+                    <ActiveLink href='/events' activeClassName='active'><a>Events</a></ActiveLink>
                     {isTeacher &&
-                        <Link href='/dashboard/accounts' activeclassName='active'>Accounts</Link>
-                    }
-                    {isTeacher &&
-                        <Link href='/dashboard/courses' activeclassName='active'>Courses</Link>
+                        <ActiveLink href='/dashboard/accounts' activeClassName='active'><a>Accounts</a></ActiveLink>
                     }
                     {isTeacher &&
-                        <Link href='/dashboard/calendar' activeclassName='active'>Calendar</Link>
+                        <ActiveLink href='/dashboard/courses' activeClassName='active'><a>Courses</a></ActiveLink>
                     }
-                    <Link href='/dashboard/messages' activeclassName='active'>Messages</Link>
+                    {isTeacher &&
+                        <ActiveLink href='/dashboard/calendar' activeClassName='active'><a>Calendar</a></ActiveLink>
+                    }
+                    <ActiveLink href='/dashboard/messages' activeClassName='active'><a>Messages</a></ActiveLink>
                 </div>
             </div>
         </Styles>
