@@ -11,7 +11,8 @@ import isEmpty from 'lodash/isEmpty';
 import cookie from '../../../utils/cookie';
 import { logout } from '../../../utils/helpers';
 
-import '../container.css';
+
+import Styles from '../container';
 
 const LoggedInTeacherCalendar = () => {
 
@@ -47,30 +48,32 @@ const LoggedInTeacherCalendar = () => {
     const isTeacher = !isEmpty(userInfo.teacher) || !isEmpty(userInfo.teacherRequest);
 
     return (
-        <main>
-            <ScrollToTopOnMount />
-            <div className='loggedin-teacher-calendar'>
-                {isUserInfoLoading && <div className='loader'>
-                    <Spinner animation="border" role="status">
-                        <span className="sr-only">Loading...</span>
-                    </Spinner>
-                </div>
-                }
-                {!isUserInfoLoading &&
-                    <React.Fragment>
-                        <UserInfo
-                            isStudent={isStudent}
-                            isTeacher={isTeacher}
-                        />
-                        <div className='calendar-holder'>
-                            <Calendar
-                                data={calendarDataAll}
+        <Styles>
+            <main>
+                <ScrollToTopOnMount />
+                <div className='loggedin-teacher-calendar'>
+                    {isUserInfoLoading && <div className='loader'>
+                        <Spinner animation="border" role="status">
+                            <span className="sr-only">Loading...</span>
+                        </Spinner>
+                    </div>
+                    }
+                    {!isUserInfoLoading &&
+                        <React.Fragment>
+                            <UserInfo
+                                isStudent={isStudent}
+                                isTeacher={isTeacher}
                             />
-                        </div>
-                    </React.Fragment>
-                }
-            </div>
-        </main>
+                            <div className='calendar-holder'>
+                                <Calendar
+                                    data={calendarDataAll}
+                                />
+                            </div>
+                        </React.Fragment>
+                    }
+                </div>
+            </main>
+        </Styles>
     );
 };
 

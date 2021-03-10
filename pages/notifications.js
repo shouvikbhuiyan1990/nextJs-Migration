@@ -1,8 +1,8 @@
 import React from 'react';
-import dynamic from "next/dynamic";
-import Layout from '../_Layout';
+import Layout from './_Layout';
+import Notifications from '../components/containers/notificationsLanding';
 import styled from 'styled-components';
-import GlobalFonts from '../_globals';
+import GlobalFonts from './_globals';
 
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -14,26 +14,18 @@ const Styles = styled.div`
 `;
 
 
-
-const Dashboard = dynamic(
-    () => {
-        return import("../../components/containers/userDashboard/dashboard");
-    },
-    { ssr: false }
-);
-
-const Index = () => {
+const Experts = () => {
 
     return (
         <Styles>
             <GlobalFonts />
             <main className='root-main-content'>
                 <Layout>
-                    <Dashboard />
+                    <Notifications />
                 </Layout>
             </main>
         </Styles>
     );
 };
 
-export default Index;
+export default Experts;

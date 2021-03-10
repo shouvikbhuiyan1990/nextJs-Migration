@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Slider from "react-slick";
 import Alert from 'react-bootstrap/Alert';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import dayjs from 'dayjs';
 import DateHolder from './dateHolder';
 import { bindActionCreators } from 'redux'

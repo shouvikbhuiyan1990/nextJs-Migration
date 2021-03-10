@@ -11,7 +11,7 @@ import isEmpty from 'lodash/isEmpty';
 import cookie from '../../../utils/cookie';
 import { logout } from '../../../utils/helpers';
 
-import '../container.css';
+import Styles from '../container';
 
 const LoggedInTeacherCources = () => {
 
@@ -39,29 +39,31 @@ const LoggedInTeacherCources = () => {
     const isTeacher = !isEmpty(userInfo.teacher) || !isEmpty(userInfo.teacherRequest);
 
     return (
-        <main>
-            <ScrollToTopOnMount />
-            <div className='loggedin-dashboard'>
-                {isUserInfoLoading && <div className='loader'>
-                    <Spinner animation="border" role="status">
-                        <span className="sr-only">Loading...</span>
-                    </Spinner>
+        <Styles>
+            <main>
+                <ScrollToTopOnMount />
+                <div className='loggedin-dashboard'>
+                    {isUserInfoLoading && <div className='loader'>
+                        <Spinner animation="border" role="status">
+                            <span className="sr-only">Loading...</span>
+                        </Spinner>
+                    </div>
+                    }
+                    {!isUserInfoLoading &&
+                        <React.Fragment>
+                            <UserInfo
+                                isStudent={isStudent}
+                                isTeacher={isTeacher}
+                            />
+                            <UserCourses
+                                allCourseByTeacher={allCourseByTeacher}
+                                loadingAllCourseByTeacher={loadingAllCourseByTeacher}
+                            />
+                        </React.Fragment>
+                    }
                 </div>
-                }
-                {!isUserInfoLoading &&
-                    <React.Fragment>
-                        <UserInfo
-                            isStudent={isStudent}
-                            isTeacher={isTeacher}
-                        />
-                        <UserCourses
-                            allCourseByTeacher={allCourseByTeacher}
-                            loadingAllCourseByTeacher={loadingAllCourseByTeacher}
-                        />
-                    </React.Fragment>
-                }
-            </div>
-        </main>
+            </main>
+        </Styles>
     );
 };
 

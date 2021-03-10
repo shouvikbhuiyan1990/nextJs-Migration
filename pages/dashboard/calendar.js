@@ -13,14 +13,13 @@ const Styles = styled.div`
   font-family: 'lato-regular';
 `;
 
-
-
-const Dashboard = dynamic(
+const Calendar = dynamic(
     () => {
-        return import("../../components/containers/userDashboard/dashboard");
+        return import("../../components/containers/userDashboard/teacherCalendar");
     },
     { ssr: false }
 );
+
 
 const Index = () => {
 
@@ -29,7 +28,7 @@ const Index = () => {
             <GlobalFonts />
             <main className='root-main-content'>
                 <Layout>
-                    <Dashboard />
+                    <Calendar />
                 </Layout>
             </main>
         </Styles>

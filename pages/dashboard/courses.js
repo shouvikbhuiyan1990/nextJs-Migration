@@ -14,10 +14,9 @@ const Styles = styled.div`
 `;
 
 
-
-const Dashboard = dynamic(
+const Cources = dynamic(
     () => {
-        return import("../../components/containers/userDashboard/dashboard");
+        return import("../../components/containers/userDashboard/courses");
     },
     { ssr: false }
 );
@@ -29,7 +28,7 @@ const Index = () => {
             <GlobalFonts />
             <main className='root-main-content'>
                 <Layout>
-                    <Dashboard />
+                    <Cources />
                 </Layout>
             </main>
         </Styles>

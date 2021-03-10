@@ -545,7 +545,10 @@ const Header = () => {
                                 <div className='profile-info'>
                                     <div className='links' onClick={(e) => e.stopPropagation()}>
                                         <Link href='/notifications'>
-                                            Notifications {notifications.length > 0 && <Badge pill variant="danger">{notifications.length}</Badge>}
+                                            <a>
+                                                Notifications
+                                            <>{notifications.length > 0 && <Badge pill variant="danger">{notifications.length}</Badge>}</>
+                                            </a>
                                         </Link>
                                         <Link href='/dashboard'>Dashboard</Link>
                                         <a href onClick={logOut}>Logout</a>

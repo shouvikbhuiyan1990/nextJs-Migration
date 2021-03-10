@@ -117,6 +117,67 @@ const ContainerStyles = styled.div`
     text-align: right;
 }
 
+.user-courses {
+    flex: 1;
+    max-width: 1024px;
+    padding: 0 30px;
+    position: relative;
+}
+
+.user-courses .course-tile {
+    margin: 0 10px;
+    width: auto;
+}
+
+.user-courses .no-course {
+    width: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 412px;
+    background-color: #ddd;
+    color: #404145;
+    font-size: 4rem;
+    cursor: pointer;
+}
+
+.user-courses .loader {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    background: rgba(255, 255, 255, 0.4);
+    bottom: 0;
+    z-index: 9;
+}
+
+.user-courses .active-head {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.user-courses .active {
+    margin-bottom: 50px;
+}
+
+.user-courses .new-course {
+    max-width: 300px;
+    height: 400px;
+    border: 1px solid #e5e5e5;
+    position: relative;
+    border-radius: 0 0 4px 4px;
+    margin: 20px auto;
+    -webkit-box-shadow: 0 0 5px 1px rgba(0, 0, 0, .05);
+    box-shadow: 0 0 5px 1px rgba(0, 0, 0, .05);
+}
+
 @media screen and (min-width: 750px) {
     .loggedin-teacher-calendar .calendar-holder {
         max-width: 600px;
@@ -153,6 +214,12 @@ const ContainerStyles = styled.div`
     }
     .user-details-section {
         width: 80%;
+    }
+    .user-courses .active-head {
+        flex-direction: row;
+    }
+    .user-courses .no-course {
+        margin-left: 0;
     }
 }
 `;
