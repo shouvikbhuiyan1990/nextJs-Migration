@@ -69,7 +69,7 @@ class CalendarMain extends Component {
                     </Alert>
                 }
                 {!this.props.bookingCalendar &&
-                    <p>You can select <span className='bold'>{this.hourMappingWithText(teacherSlotTime)}</span> slot at a time to mark your availability. <Link to={`/dashboard`}>You can change this preference</Link></p>
+                    <p>You can select <span className='bold'>{this.hourMappingWithText(teacherSlotTime)}</span> slot at a time to mark your availability. <Link href={`/dashboard`}>You can change this preference</Link></p>
                 }
                 <Slider
                     infinite={true}

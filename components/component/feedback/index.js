@@ -8,8 +8,6 @@ import Form from 'react-bootstrap/Form';
 import { useDispatch, useSelector } from "react-redux";
 import { toogleFeedback, postFeedbacks } from '../../../store/actions/global';
 import cookie from '../../../utils/cookie';
-
-import './index.css';
 import dayjs from 'dayjs';
 
 const FeedBack = ({

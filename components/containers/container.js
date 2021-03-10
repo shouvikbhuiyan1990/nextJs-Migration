@@ -30,6 +30,12 @@ const ContainerStyles = styled.div`
     z-index: 9;
 }
 
+.user-details-section {
+    padding: 0 30px;
+    flex: 1;
+    min-height: 100vh;
+}
+
 .teacher-listing, .course-landing-user, .notifications-landing, .search-landing-user {
     display: block;
     padding: 0 20px;
@@ -107,6 +113,9 @@ const ContainerStyles = styled.div`
     max-width: none;
     margin: 0;
 }
+.profile-info .edit-profile {
+    text-align: right;
+}
 
 @media screen and (min-width: 750px) {
     .loggedin-teacher-calendar .calendar-holder {
@@ -141,6 +150,9 @@ const ContainerStyles = styled.div`
     }
     .loggedin-teacher-calendar .calendar-holder {
         max-width: 980px;
+    }
+    .user-details-section {
+        width: 80%;
     }
 }
 `;

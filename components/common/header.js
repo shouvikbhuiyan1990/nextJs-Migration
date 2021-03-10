@@ -544,10 +544,10 @@ const Header = () => {
                             <div className='profile-links'>
                                 <div className='profile-info'>
                                     <div className='links' onClick={(e) => e.stopPropagation()}>
-                                        <Link to='/notifications'>
+                                        <Link href='/notifications'>
                                             Notifications {notifications.length > 0 && <Badge pill variant="danger">{notifications.length}</Badge>}
                                         </Link>
-                                        <Link to='/dashboard'>Dashboard</Link>
+                                        <Link href='/dashboard'>Dashboard</Link>
                                         <a href onClick={logOut}>Logout</a>
                                     </div>
                                 </div>

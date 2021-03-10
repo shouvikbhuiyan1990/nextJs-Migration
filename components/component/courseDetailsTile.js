@@ -150,6 +150,7 @@ const CourseDetailsTile = ({
                             starSpacing="2px"
                         />
                         <p>{teacher.country}</p>
+                        
                     </div>
                     <button className='btn share-btn' onClick={() => setShareModalDisplay(!showShareModal)}>
                         <i className="fa fa-share-alt" aria-hidden="true"></i>

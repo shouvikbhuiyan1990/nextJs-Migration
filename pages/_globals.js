@@ -614,6 +614,52 @@ button.share-btn i {
 .calendar-modal .day-holder-container .slick-prev:before, .calendar-modal .day-holder-container .slick-next:before {
     display: none;
 }
+.feedback-modal .centered-without-space {
+    flex-direction: column;
+}
+
+.feedback-modal .avatar {
+    width: 120px;
+    height: 120px;
+    margin-bottom: 10px;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.feedback-modal p {
+    margin-bottom: 10px;
+}
+
+.feedback-modal .loader {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    background-color: rgba(255, 255, 255, 0.4);
+    z-index: 9;
+}
+
+.feedback-modal .modal-dialog {
+    max-width: none;
+    position: relative;
+}
+
+.feedback-modal .feedback-form {
+    text-align: center;
+}
+
+.feedback-modal .buttons button:first-child {
+    margin-right: 12px;
+}
+
+.feedback-modal textarea {
+    margin-top: 22px;
+    min-height: 150px;
+}
+
+.feedback-modal .modal-footer {
+    border: none;
+}
+
 
 
 @media screen and (min-width: 750px) {
@@ -671,6 +717,10 @@ button.share-btn i {
     }
     .calendar-modal .day-holder.booking-flow .day-separator .time-slots .slot-pill {
         width: 20.285%;
+    }
+    .feedback-modal .modal-dialog {
+        max-width: none;
+        width: 55%;
     }
 }
 `;
