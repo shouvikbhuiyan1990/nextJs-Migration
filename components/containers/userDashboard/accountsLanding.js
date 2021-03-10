@@ -8,6 +8,7 @@ import Spinner from 'react-bootstrap/Spinner';
 import isEmpty from 'lodash/isEmpty';
 import FeedBack from '../../component/feedback';
 import Accounts from '../../component/accounts';
+import DashboardHoc from './dashboardHoc';
 
 import cookie from '../../../utils/cookie';
 import { logout } from '../../../utils/helpers';
@@ -76,4 +77,4 @@ const AccountsLanding = () => {
     );
 };
 
-export default AccountsLanding;
+export default DashboardHoc(AccountsLanding);

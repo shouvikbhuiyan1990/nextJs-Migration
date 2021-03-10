@@ -2,7 +2,7 @@
   "name": "with-redux-thunk",
   "version": "1.0.0",
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev -p 9191",
     "build": "next build",
     "start": "next start"
   },

@@ -11,11 +11,11 @@ import isEmpty from 'lodash/isEmpty';
 import Modal from '../../component/joiningModal';
 import FeedBack from '../../component/feedback';
 import RegistrationModal from '../../component/registrationModal';
+import DashboardHoc from './dashboardHoc';
 
 import cookie from '../../../utils/cookie';
 import { logout } from '../../../utils/helpers';
 import Styles from '../container';
-// import '../container.css';
 import { useRouter } from "next/router";
 
 const Dashboard = () => {
@@ -108,4 +108,4 @@ const Dashboard = () => {
     );
 };
 
-export default Dashboard;
+export default DashboardHoc(Dashboard);

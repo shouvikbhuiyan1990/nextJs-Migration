@@ -9,6 +9,7 @@ import { getEvents } from '../../../store/actions/global';
 import Spinner from 'react-bootstrap/Spinner';
 import isEmpty from 'lodash/isEmpty';
 import FeedBack from '../../component/feedback';
+import DashboardHoc from './dashboardHoc';
 
 import cookie from '../../../utils/cookie';
 import { logout } from '../../../utils/helpers';
@@ -110,4 +111,4 @@ const EventsLanding = () => {
     );
 };
 
-export default EventsLanding;
+export default DashboardHoc(EventsLanding);

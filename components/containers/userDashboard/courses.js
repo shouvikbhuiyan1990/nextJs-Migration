@@ -7,6 +7,7 @@ import { checkIfProfileExists } from '../../../store/actions/registration';
 import { getCoursesByUserTeacherDetails } from '../../../store/actions/cources';
 import Spinner from 'react-bootstrap/Spinner';
 import isEmpty from 'lodash/isEmpty';
+import DashboardHoc from './dashboardHoc';
 
 import cookie from '../../../utils/cookie';
 import { logout } from '../../../utils/helpers';
@@ -67,4 +68,4 @@ const LoggedInTeacherCources = () => {
     );
 };
 
-export default LoggedInTeacherCources;
+export default DashboardHoc(LoggedInTeacherCources);

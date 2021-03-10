@@ -9,15 +9,19 @@ export const logout = () => {
     window.location.href = '/';
 }
 
+export const CheckIfLoggedIn = () => {
+    return !!cookie.get('googleAuthId')[0];
+}
+
 export const getCountryFromLocale = () => {
-    if(cookie.get('locale')[0] === 'en-US') {
+    if (cookie.get('locale')[0] === 'en-US') {
         return 'US';
     }
     return 'IN';
 }
 
 export const getCurrencyFromLocale = () => {
-    if(cookie.get('locale')[0] === 'en-US') {
+    if (cookie.get('locale')[0] === 'en-US') {
         return 'USD';
     }
     return 'INR';

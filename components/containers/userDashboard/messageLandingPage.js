@@ -11,6 +11,7 @@ import Messages from '../../component/messages';
 
 import cookie from '../../../utils/cookie';
 import { logout } from '../../../utils/helpers';
+import DashboardHoc from './dashboardHoc';
 
 import Styles from '../container';
 
@@ -84,4 +85,4 @@ const MessageLandingPage = () => {
     );
 };
 
-export default MessageLandingPage;
+export default DashboardHoc(MessageLandingPage);

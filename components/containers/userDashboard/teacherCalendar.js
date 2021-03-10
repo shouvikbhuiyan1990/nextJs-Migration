@@ -5,6 +5,7 @@ import Calendar from '../../common/calendar';
 import { useDispatch, useSelector } from "react-redux";
 import { checkIfProfileExists } from '../../../store/actions/registration';
 import { getCalendar } from '../../../store/actions/booking';
+import DashboardHoc from './dashboardHoc';
 import Spinner from 'react-bootstrap/Spinner';
 import isEmpty from 'lodash/isEmpty';
 
@@ -77,4 +78,4 @@ const LoggedInTeacherCalendar = () => {
     );
 };
 
-export default LoggedInTeacherCalendar;
+export default DashboardHoc(LoggedInTeacherCalendar);

@@ -12,6 +12,7 @@ import FeedBack from '../../component/feedback';
 import Styles from '../container';
 import cookie from '../../../utils/cookie';
 import { logout } from '../../../utils/helpers';
+import DashboardHoc from './dashboardHoc';
 
 
 const SITE_SHORT_NAME = "https-conzalt-com";
@@ -89,4 +90,4 @@ const FeedsLanding = () => {
     );
 };
 
-export default FeedsLanding;
+export default DashboardHoc(FeedsLanding);
