@@ -27,7 +27,8 @@ const Styles = styled.div`
     margin-bottom: 2px;
 }
 
-.expert-card p.skills {
+.expert-card p.skills,
+.expert-card p.job {
     padding: 6px 0;
 }
 
@@ -48,7 +49,8 @@ const Styles = styled.div`
     height: 150px;
 }
 
-.expert-card p.skills {
+.expert-card p.skills,
+.expert-card p.job {
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
@@ -104,7 +106,7 @@ const Card = ({
                     starSpacing="2px"
                 />
                 <p className='skills' style={{ maxWidth: `${width}px` }}>{description}</p>
-                <p className='job'>{remarks}</p>
+                <p className='job' style={{ maxWidth: `${width}px` }}>{remarks}</p>
             </div>
         </Styles>
     )

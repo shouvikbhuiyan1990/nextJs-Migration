@@ -404,9 +404,13 @@ const Header = () => {
         debouncedSearch(searchTxt);
     }, [searchTxt, debouncedSearch]);
 
+
+    useEffect(() => {
+        setCurrentPage(location.pathname === '/' ? 'home' : '');
+    }, []);
+
     useEffect(() => {
         const scrollEvent = () => {
-            console.log(document.offsetTop)
             if (filteredList.length > 0 && window.pageYOffset > 150) {
                 setFilteredList([]);
             }
@@ -428,7 +432,10 @@ const Header = () => {
     }
 
     const gotoSearchPage = (tag) => {
-        if (!tag) {
+        if (!tag && !searchTxt) {
+            router.push(`/find?text=all&tag=all`);
+        }
+        else if (!tag) {
             router.push(`/find?text=${searchTxt}&tag=all`);
         }
         else {

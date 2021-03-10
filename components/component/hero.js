@@ -321,7 +321,10 @@ const Hero = () => {
     }
 
     const gotoSearchPage = (tag) => {
-        if (!tag) {
+        if (!tag && !searchTxt) {
+            router.push(`/find?text=all&tag=all`);
+        }
+        else if (!tag) {
             router.push(`/find?text=${searchTxt}&tag=all`);
         }
         else {
@@ -343,7 +346,7 @@ const Hero = () => {
                                         <i className="fa fa-search" aria-hidden="true"></i>
                                         <input onChange={searchFunction} type='search' autoComplete='off' placeholder='Try searching for course' />
                                     </div>
-                                    <button className='btn btn-custom' onClick={() => gotoSearchPage()}>Search</button>
+                                    <button type="button" className='btn btn-custom' onClick={() => gotoSearchPage()}>Search</button>
                                     {filteredList.length > 0 &&
                                         <div className='typeahead' style={{ top: `${getTopPosition()}px` }}>
                                             {
