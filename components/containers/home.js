@@ -1,6 +1,7 @@
 import React from "react";
 import Hero from '../component/hero';
 import IntroBanner from '../component/introBanner';
+import SideImageBanner from '../component/introBanner/sideImageBanner';
 import HowItWorks from '../component/howItWorks';
 import Styles from './container';
 import ScrollToTopMenu from '../common/scrollToTopOnMount';
@@ -14,6 +15,7 @@ const Home = () => {
                 <Hero />
                 <IntroBanner />
                 <HowItWorks />
+                <SideImageBanner />
                 <CourseTileContainer />
             </main>
         </Styles>
