@@ -126,8 +126,9 @@ const Styles = styled.div`
     font-size: 14px;
     border: 1px solid #fff;
     border-radius: 40px;
-    padding: 2px 16px 0;
+    padding: 4px 16px 5px;
     margin: 5px;
+    cursor: pointer;
 }
 
 .main-content ul li:last-child {
@@ -192,6 +193,7 @@ const Styles = styled.div`
 
 .input-cont {
     width: 100%;
+    position: relative;
 }
 
 .main-content .small {
@@ -209,10 +211,12 @@ const Styles = styled.div`
     margin-top: 10px;
 }
 
+.popular ul li a {
+    display: inline-block;
+    vertical-align: middle;
+}
+
 @media screen and (min-width: 750px) {
-    .main {
-        min-height: 600px;
-    }
     .carousal-content .content .main-content {
         max-width: 650px;
         padding: 0 32px;
@@ -238,7 +242,6 @@ const Styles = styled.div`
         max-width: 1400px;
     }
     .carousal-container {
-        position: absolute;
         max-height: 650px;
     }
     .main-content .popular {
@@ -332,6 +335,10 @@ const Hero = () => {
         }
     }
 
+    const gotoSearchPageFromPills = (text) => {
+        router.push(`/find?text=${text}&tag=all`);
+    }
+
 
     return (
         <Styles>
@@ -372,7 +379,7 @@ const Hero = () => {
                                                 uniqueSubject && uniqueSubject.length > 0 &&
                                                 uniqueSubject.map((value, index) => {
                                                     return (
-                                                        <li>
+                                                        <li onClick={() => gotoSearchPageFromPills(value.subject)}>
                                                             <a href={() => false}>{value.subject}</a>
                                                         </li>
                                                     )

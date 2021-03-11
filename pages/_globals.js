@@ -54,6 +54,10 @@ body {
     background: rgba(255, 255, 255, 0.4);
 }
 
+.react-component {
+    margin: 40px 0;
+}
+
 button[disabled] {
 	cursor: not-allowed;
 }

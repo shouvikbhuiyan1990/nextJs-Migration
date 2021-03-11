@@ -4,23 +4,31 @@ import styled from 'styled-components';
 
 const Styles = styled.div`
 .footer {
-    border-top: 1px solid #e4e5e7;
+    background: #1A1A1A;
+    color: #fff;
     padding-top: 34px;
     padding-bottom: 24px;
 }
 
-.footer-bottom-container {
-    border-top: 1px solid #e4e5e7;
-}
-
 .footer-bottom {
     padding-bottom: 40px;
+    align-items: center;
+    border-top: 1px solid #ccc;
 }
 
 .footer-head, .footer-bottom {
     max-width: 1400px;
     margin: 0 auto;
-    padding: 0 32px;
+}
+
+.footer-head {
+    display: flex;
+    flex-direction: column;
+    padding: 0 25px 30px;
+}
+
+.footer-head section {
+    flex: 1;
 }
 
 .footer-bottom {
@@ -29,11 +37,6 @@ const Styles = styled.div`
     justify-content: space-between;
     padding-top: 32px;
 }
-
-.footer .footer-head ul li {
-    list-style: none;
-}
-
 .footer .footer-head ul {
     display: flex;
     flex-direction: column;
@@ -73,21 +76,48 @@ const Styles = styled.div`
 
 .logo-copy p {
     margin: 0;
-    margin-left: 16px;
+}
+
+.footer-head section > h2 {
+    margin-bottom: 25px;
+    font-family: 'lato-bold';
+}
+
+.footer-head section h4 {
+    margin-bottom: 15px;
+    font-family: 'lato-bold';
+}
+
+.footer-head section ul li {
+    padding: 10px 0;
+}
+
+.footer-head section:first-child {
+    margin-bottom: 30px;
 }
 
 @media screen and (min-width: 1025px) {
-    .footer {
-        padding-top: 64px;
+    .footer-head section.sub-section {
+        display: flex;
+        justify-content: space-between;
+        flex: 0.3 1 auto;
     }
-    .footer .footer-head ul {
+    .footer-head {
         flex-direction: row;
+        padding: 0 0 30px;
+    }
+    .footer-head section:first-child > p {
+        width: 40%;
     }
     .footer-bottom {
         flex-direction: row;
     }
     .social {
         margin-top: 0;
+    }
+
+    .footer-head section:first-child {
+        margin-bottom: 0;
     }
 }
 `;
@@ -96,19 +126,34 @@ const Footer = () => (
     <Styles>
         <div className='footer'>
             <div className='footer-head'>
-                <ul>
-                    <li>Categories</li>
-                    <li>About</li>
-                    <li>Support</li>
-                    <li>Community</li>
-                    <li>More from us</li>
-                </ul>
+                <section>
+                    <h2>Conzult</h2>
+                    <p>This is a brief description of what the company does, its morals and objectives. Any other generic information can be added here.</p>
+                </section>
+                <section className='sub-section'>
+                    <div className='explore-company'>
+                        <h4>Explore</h4>
+                        <ul>
+                            <li>Sub Link 1</li>
+                            <li>Sub Link 2</li>
+                            <li>Sub Link 3</li>
+                        </ul>
+                    </div>
+                    <div className='explore-company'>
+                        <h4>Company</h4>
+                        <ul>
+                            <li>Sub Link 1</li>
+                            <li>Sub Link 2</li>
+                            <li>Sub Link 3</li>
+                        </ul>
+                    </div>
+                </section>
             </div>
             <div className='footer-bottom-container'>
                 <div className='footer-bottom'>
                     <div className='logo-copy'>
                         {/* <img src={logo} alt='logo'></img> */}
-                        <p>&copy; Conzalt, {dayjs().format('YYYY')} </p>
+                        <p>Copyright &copy; DJIT Tech Pvt Ltd, {dayjs().format('YYYY')} </p>
                     </div>
                     <div className='social'>
                         <a href={() => false}>
@@ -125,6 +170,9 @@ const Footer = () => (
                         </a>
                         <a href={() => false}>
                             <i className="fa fa-twitter-square" aria-hidden="true"></i>
+                        </a>
+                        <a href={() => false}>
+                            <i className="fa fa-youtube-play" aria-hidden="true"></i>
                         </a>
                     </div>
                 </div>
